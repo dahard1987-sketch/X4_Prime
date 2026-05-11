@@ -161,6 +161,12 @@ a:hover { text-decoration: underline; }
 .sub-nav .sn-actions a { color: var(--ink-mute); }
 .sub-nav .sn-actions a:hover { color: var(--ink); text-decoration: none; }
 
+/* Sub-nav contrast fixes */
+.sub-nav .sn-actions .caption { color: var(--ink) !important; font-weight: 600; }
+.sub-nav .sn-actions .btn-pill { color: #fff !important; }
+.sub-nav .sn-actions .btn-pill:hover { color: #fff !important; }
+
+
 /* ============================================================
    Tile sections — alternating light/parchment/dark, full bleed
    ============================================================ */
@@ -683,6 +689,119 @@ a:hover { text-decoration: underline; }
   .global-nav, .sub-nav { padding: 0 var(--space-5); }
   .global-nav .gn-links { gap: var(--space-5); }
   .sub-nav .sn-title { font-size: 17px; }
+}
+
+
+/* Mobile readability: keep charts large and scrollable instead of shrinking text */
+@media (max-width: 720px) {
+  html, body { font-size: 16px; }
+  :root { --space-section: 56px; }
+  .tile { padding: 56px 16px; }
+  .tile-inner { max-width: 100%; }
+
+  .global-nav {
+    height: auto;
+    min-height: 44px;
+    padding: 0 14px;
+  }
+  .global-nav .gn-inner { gap: 14px; }
+  .global-nav .gn-brand img { height: 20px; }
+  .global-nav .gn-links {
+    gap: 16px;
+    overflow-x: auto;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .global-nav .gn-links::-webkit-scrollbar { display: none; }
+
+  .sub-nav {
+    top: 44px;
+    height: auto;
+    min-height: 58px;
+    padding: 8px 16px;
+  }
+  .sub-nav .sn-inner {
+    gap: 12px;
+  }
+  .sub-nav .sn-title {
+    display: none;
+  }
+  .sub-nav .sn-actions {
+    width: 100%;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .sub-nav .sn-actions .caption {
+    color: var(--ink) !important;
+    font-size: 14px;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+  .sub-nav .sn-actions .btn-pill {
+    color: #fff !important;
+    padding: 8px 18px !important;
+    font-size: 14px !important;
+    flex: 0 0 auto;
+  }
+
+  .h-hero { font-size: clamp(46px, 14vw, 72px); }
+  .eyebrow.section-only { font-size: clamp(30px, 9vw, 40px); }
+  .lead { font-size: 18px; }
+
+  .stat-row {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  .stat {
+    padding: 22px 20px;
+  }
+  .stat .stat-value {
+    font-size: 48px;
+  }
+
+  .chart-card {
+    padding: 20px 14px;
+    margin-left: -4px;
+    margin-right: -4px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .chart-title { font-size: 21px; }
+  .chart-sub { font-size: 14px; margin-bottom: 20px; color: var(--ink-soft); }
+  .chart-card [id^="chart-"] {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 8px;
+  }
+  .chart-card [id^="chart-"] svg {
+    width: 1100px !important;
+    max-width: none !important;
+  }
+  #chart-distribution svg,
+  #chart-class-position svg {
+    width: 900px !important;
+  }
+  #chart-national svg,
+  #chart-grades svg,
+  #chart-class-trend svg,
+  #chart-trend svg {
+    width: 1120px !important;
+  }
+
+  .profile-hero .student-name { font-size: clamp(64px, 22vw, 96px); }
+  .profile-hero .student-meta {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .profile-hero .meta-item .meta-value { font-size: 52px; }
+  .round-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .q-card summary {
+    padding: 20px !important;
+    align-items: flex-start !important;
+    gap: 16px;
+  }
 }
 
 /* Page-load reveal animation (subtle, Apple-tight) */

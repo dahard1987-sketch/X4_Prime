@@ -88,7 +88,7 @@ function renderBarChart(container, data, options = {}) {
     bars += svgEl('text', {
       x: (x + barW / 2).toFixed(1), y: padTop + chartH + 22,
       'text-anchor': 'middle',
-      'font-size': 11,
+      'font-size': 13,
       fill: d.highlight ? CHART_COLORS.magenta : CHART_COLORS.inkFaint,
       'font-weight': d.highlight ? 600 : 400,
       'font-family': "var(--font-body)",
@@ -104,7 +104,7 @@ function renderBarChart(container, data, options = {}) {
     });
     yAxis += svgEl('text', {
       x: padLeft - 10, y: t.y + 4, 'text-anchor': 'end',
-      'font-size': 11, fill: CHART_COLORS.inkFaint,
+      'font-size': 13, fill: CHART_COLORS.inkFaint,
       'font-family': "var(--font-body)",
     }, t.value);
   });
@@ -119,12 +119,12 @@ function renderBarChart(container, data, options = {}) {
     });
     meanLine += svgEl('text', {
       x: padLeft + chartW + 2, y: y + 4,
-      'font-size': 11, fill: CHART_COLORS.ink, 'font-weight': 500,
+      'font-size': 13, fill: CHART_COLORS.ink, 'font-weight': 500,
       'font-family': "var(--font-body)",
     }, '');
     meanLine += svgEl('text', {
       x: padLeft + chartW - 6, y: y - 6, 'text-anchor': 'end',
-      'font-size': 11, fill: CHART_COLORS.ink, 'font-weight': 500,
+      'font-size': 13, fill: CHART_COLORS.ink, 'font-weight': 500,
       'font-family': "var(--font-body)",
     }, `평균 ${mean}`);
   }
@@ -174,14 +174,14 @@ function renderLineChart(container, series, options = {}) {
     });
     grid += svgEl('text', {
       x: padLeft - 10, y: y + 4, 'text-anchor': 'end',
-      'font-size': 11, fill: CHART_COLORS.inkFaint,
+      'font-size': 13, fill: CHART_COLORS.inkFaint,
       'font-family': "var(--font-body)",
     }, yFormat(Math.round(v)));
   }
   xLabels.forEach((lab, i) => {
     grid += svgEl('text', {
       x: xToPx(i), y: padTop + chartH + 22, 'text-anchor': 'middle',
-      'font-size': 11, fill: CHART_COLORS.inkMute,
+      'font-size': 13, fill: CHART_COLORS.inkMute,
       'font-family': "var(--font-body)",
     }, lab);
   });
@@ -229,7 +229,7 @@ function renderLineChart(container, series, options = {}) {
       legendEl += svgEl('circle', { cx: lx + 11, cy: ly + 8, r: s.thick ? 4 : 3, fill: s.color, stroke: '#fff', 'stroke-width': 1.2 });
       legendEl += svgEl('text', {
         x: lx + 30, y: ly + 12,
-        'font-size': 12, fill: CHART_COLORS.ink, 'font-weight': 500,
+        'font-size': 14, fill: CHART_COLORS.ink, 'font-weight': 500,
         'font-family': "var(--font-body)",
       }, s.name);
       lx += 30 + s.name.length * 8 + 38;
@@ -285,7 +285,7 @@ function renderGroupedBars(container, groups, seriesMeta, options = {}) {
     });
     grid += svgEl('text', {
       x: padLeft - 10, y: y + 4, 'text-anchor': 'end',
-      'font-size': 11, fill: CHART_COLORS.inkFaint,
+      'font-size': 13, fill: CHART_COLORS.inkFaint,
       'font-family': "var(--font-body)",
     }, yFormat(parseFloat(v.toFixed(1))));
   }
@@ -307,7 +307,7 @@ function renderGroupedBars(container, groups, seriesMeta, options = {}) {
         bars += svgEl('text', {
           x: (x + barW / 2 - 1).toFixed(1), y: (y - 6).toFixed(1),
           'text-anchor': 'middle',
-          'font-size': 11, fill: CHART_COLORS.magenta, 'font-weight': 600,
+          'font-size': 13, fill: CHART_COLORS.magenta, 'font-weight': 600,
           'font-family': "var(--font-body)",
         }, v.toFixed(1) + '%');
       }
@@ -316,7 +316,7 @@ function renderGroupedBars(container, groups, seriesMeta, options = {}) {
     bars += svgEl('text', {
       x: (gx + groupW / 2).toFixed(1), y: padTop + chartH + 22,
       'text-anchor': 'middle',
-      'font-size': 12, fill: CHART_COLORS.inkMute,
+      'font-size': 14, fill: CHART_COLORS.inkMute,
       'font-family': "var(--font-body)",
     }, g.label);
   });
@@ -329,7 +329,7 @@ function renderGroupedBars(container, groups, seriesMeta, options = {}) {
     legend += svgEl('rect', { x: lx, y: ly, width: 14, height: 14, rx: 2, fill: s.color });
     legend += svgEl('text', {
       x: lx + 20, y: ly + 11,
-      'font-size': 12, fill: CHART_COLORS.ink, 'font-weight': 500,
+      'font-size': 14, fill: CHART_COLORS.ink, 'font-weight': 500,
       'font-family': "var(--font-body)",
     }, s.name);
     lx += 20 + s.name.length * 8 + 28;
@@ -393,7 +393,7 @@ function renderNationalCurve(container, bands, studentScore, options = {}) {
     });
     grid += svgEl('text', {
       x: xToPx(s), y: padTop + chartH + 22, 'text-anchor': 'middle',
-      'font-size': 11, fill: CHART_COLORS.inkFaint,
+      'font-size': 13, fill: CHART_COLORS.inkFaint,
       'font-family': "var(--font-body)",
     }, s);
   }
@@ -412,7 +412,7 @@ function renderNationalCurve(container, bands, studentScore, options = {}) {
     const cx = xToPx((g.lo + g.hi) / 2);
     grid += svgEl('text', {
       x: cx, y: padTop + chartH + 40, 'text-anchor': 'middle',
-      'font-size': 10.5, fill: CHART_COLORS.inkMute,
+      'font-size': 14, fill: CHART_COLORS.inkMute,
       'font-family': "var(--font-body)",
     }, g.label);
   });
@@ -424,7 +424,7 @@ function renderNationalCurve(container, bands, studentScore, options = {}) {
     });
     grid += svgEl('text', {
       x: padLeft - 10, y: yToPx(p) + 4, 'text-anchor': 'end',
-      'font-size': 11, fill: CHART_COLORS.inkFaint,
+      'font-size': 13, fill: CHART_COLORS.inkFaint,
       'font-family': "var(--font-body)",
     }, p + '%');
   }
@@ -463,7 +463,7 @@ function renderNationalCurve(container, bands, studentScore, options = {}) {
     marker += svgEl('text', {
       x: labelX, y: my + 4,
       'text-anchor': labelAnchor,
-      'font-size': 12, fill: CHART_COLORS.magenta,
+      'font-size': 14, fill: CHART_COLORS.magenta,
       'font-family': "var(--font-body)",
     }, `상위 약 ${(100 - pct).toFixed(1)}%`);
   }
