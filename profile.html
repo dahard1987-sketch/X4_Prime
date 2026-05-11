@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CANB English · 학생 성적 분석</title>
+<link rel="icon" type="image/png" href="images/favicon.png">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+
+<!-- ========== Global Nav ========== -->
+<header class="global-nav">
+  <div class="gn-inner">
+    <div class="gn-brand">
+      <img src="images/canb_logo_small.png" alt="CANB English">
+    </div>
+    <nav class="gn-links">
+      <a href="index.html">← 반 전체</a>
+      <a href="#position">위치</a>
+      <a href="#listening">듣기 상세</a>
+      <a href="#trend">추이</a>
+      <a href="#wrong">오답 분석</a>
+      <a href="#" onclick="logout(); return false;">로그아웃</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ========== Sub Nav ========== -->
+<div class="sub-nav">
+  <div class="sn-inner">
+    <div class="sn-title" id="sub-title">학생 성적 분석</div>
+    <div class="sn-actions">
+      <span class="caption">26SP X4 Prime Term Test</span>
+      <a href="index.html" class="caption" style="color:var(--ink-mute);">반 전체로 →</a>
+    </div>
+  </div>
+</div>
+
+<!-- Auth wall (shown if no profile in sessionStorage) -->
+<section class="tile tile-light" id="auth-wall" style="display:none;">
+  <div class="tile-inner reveal" style="text-align:center;">
+    <h2 class="h-display">먼저 인증이 필요합니다.</h2>
+    <p class="lead" style="margin-top:16px;">반 전체 페이지에서 이름과 인증 문구를 입력해 주세요.</p>
+    <div style="margin-top:48px;">
+      <a class="btn-pill" href="index.html#access">반 전체로 돌아가기 →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ========== Profile content ========== -->
+<div id="profile-content" style="display:none;">
+
+  <!-- ========== Hero (parchment) ========== -->
+  <section class="tile tile-parchment">
+    <div class="tile-inner profile-hero reveal reveal-1">
+      <div class="student-label">26SP X4 Prime Term Test RESULT</div>
+      <div class="student-name" id="ph-name">—</div>
+      <span class="grade-badge"><span class="gb-num" id="ph-grade">—</span></span>
+
+      <div class="student-meta">
+        <div class="meta-item">
+          <div class="meta-label">보정 합계</div>
+          <div class="meta-value mono"><span id="ph-total">—</span><span class="unit">/ 100</span></div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-label">독해 (이번 시험)</div>
+          <div class="meta-value mono"><span id="ph-reading">—</span><span class="unit">/ 63</span></div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-label">듣기 보정</div>
+          <div class="meta-value mono"><span id="ph-listening">—</span><span class="unit">/ 37</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Position in class (light) ========== -->
+  <section class="tile tile-light" id="position">
+    <div class="tile-inner reveal">
+      <div class="eyebrow section-only">반 내 위치</div>
+      <p class="lead" style="margin-top:16px; max-width:680px;" id="position-lead">—</p>
+
+      <div class="chart-card" style="margin-top:20px;">
+        <div class="chart-title">반 점수 분포</div>
+        <div class="chart-sub">진한 색으로 표시된 막대가 본인 위치입니다 · 익명 정렬</div>
+        <div id="chart-class-position"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Position vs national 고2 (dark) ========== -->
+  <section class="tile tile-dark">
+    <div class="tile-inner reveal">
+      <div class="eyebrow section-only">고2 기준 분포</div>
+
+      <div class="chart-card" style="margin-top:0;">
+        <div class="chart-title">2024 10월 고2 학평 누적 분포</div>
+        <div class="chart-sub">가로축: 점수 · 세로축: 누적 학생 수 비율. 표시된 위치가 본인 점수입니다.</div>
+        <div id="chart-national"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Listening detail (parchment) ========== -->
+  <section class="tile tile-parchment" id="listening">
+    <div class="tile-inner reveal">
+      <div class="eyebrow section-only">듣기 보정 상세</div>
+
+      <div class="chart-card">
+        <div class="chart-title">회차별 듣기 정답률</div>
+        <div class="chart-sub">전체 공란 회차는 평균에서 제외하고, 일부 공란 회차는 실제로 답한 문항만 평균에 포함합니다.</div>
+        <div id="round-grid" class="round-grid"></div>
+        <div style="margin-top:32px; padding-top:24px; border-top: 1px solid var(--divider); display:flex; flex-wrap:wrap; gap:32px;">
+          <div>
+            <div class="caption">총 정답 / 응시</div>
+            <div class="mono" style="font-family:var(--font-display); font-size:36px; line-height:1;" id="lt-totals">—</div>
+          </div>
+          <div>
+            <div class="caption">듣기 정답률</div>
+            <div class="mono" style="font-family:var(--font-display); font-size:36px; line-height:1;" id="lt-acc">—</div>
+          </div>
+          <div>
+            <div class="caption">37점 환산 (반올림)</div>
+            <div class="mono" style="font-family:var(--font-display); font-size:36px; line-height:1; color:var(--magenta);" id="lt-score">—</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Trend (light) ========== -->
+  <section class="tile tile-light" id="trend">
+    <div class="tile-inner reveal">
+      <div class="eyebrow section-only">학기 추이</div>
+      <div class="chart-card">
+        <div class="chart-title">독해 · 듣기 정답률 추이</div>
+        <div class="chart-sub">정답률(%)은 빈 답(미응시)을 제외하고 계산</div>
+        <div id="chart-trend"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Wrong questions (parchment) ========== -->
+  <section class="tile tile-parchment" id="wrong">
+    <div class="tile-inner reveal">
+      <div class="eyebrow section-only">오답 분석</div>
+      <div id="wrong-list" style="margin-top:48px;"></div>
+    </div>
+  </section>
+
+  <!-- ========== Footer ========== -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="images/canb_logo_small.png" alt="CANB English">
+      </div>
+      <p class="footer-text">CANB English · 26 Spring X4 Prime Term Test Score Report</p>
+      <p class="footer-text" style="margin-top:8px;">
+        <a href="index.html" style="color:var(--ink-mute);">← 반 전체로 돌아가기</a>
+      </p>
+    </div>
+  </footer>
+
+</div>
+
+<script src="assets/crypto.js"></script>
+<script src="assets/charts.js"></script>
+<script src="assets/profile.js"></script>
+</body>
+</html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CANB English · 26SP X4 Prime Term Test 성적 분석</title>
+<meta name="description" content="2024학년도 10월 고2 영어 학력평가 — 반 전체 성적 분석 리포트">
+<link rel="icon" type="image/png" href="images/favicon.png">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+
+<!-- ========== Global Nav ========== -->
+<header class="global-nav">
+  <div class="gn-inner">
+    <div class="gn-brand">
+      <img src="images/canb_logo_small.png" alt="CANB English">
+    </div>
+    <nav class="gn-links">
+      <a href="#overview">반 전체</a>
+      <a href="#distribution">분포</a>
+      <a href="#listening">듣기 보정</a>
+      <a href="#questions">문항 분석</a>
+      <a href="#access">학생 페이지</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ========== Sub Nav ========== -->
+<div class="sub-nav">
+  <div class="sn-inner">
+    <div class="sn-title">26SP X4 Prime Term Test · 성적 분석</div>
+    <div class="sn-actions">
+      <span class="caption">24년 10월 고2 학평</span>
+      <a href="#access" class="btn-pill" style="padding: 6px 16px; font-size: 14px;">학생 페이지 →</a>
+    </div>
+  </div>
+</div>
+
+<!-- ========== Hero Tile (light) ========== -->
+<section class="tile tile-light" id="overview">
+  <div class="tile-inner reveal reveal-1">
+    <div class="eyebrow">26 SPRING · X4 PRIME TERM TEST</div>
+    <h1 class="h-hero">반 전체 결과</h1>
+    <div class="stat-row reveal reveal-2">
+      <div class="stat">
+        <div class="stat-label">반 평균 (100점 만점)</div>
+        <div class="stat-value mono" id="kpi-mean">—</div>
+        <div class="stat-foot">중1 학생 12명 기준</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">최고점 / 최저점</div>
+        <div class="stat-value mono" id="kpi-range">—</div>
+        <div class="stat-foot" id="kpi-spread">—</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">독해 평균 (63점 만점)</div>
+        <div class="stat-value mono" id="kpi-reading">—</div>
+        <div class="stat-foot" id="kpi-reading-pct">—</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">듣기 보정 평균 (37점)</div>
+        <div class="stat-value mono" id="kpi-listening">—</div>
+        <div class="stat-foot">사전 데이터 기반 환산</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== Score Distribution (parchment) ========== -->
+<section class="tile tile-parchment" id="distribution">
+  <div class="tile-inner reveal">
+    <div class="eyebrow section-only">분포</div>
+    <div class="chart-card">
+      <div class="chart-title">반 점수 분포</div>
+      <div class="chart-sub">평균선과 함께 표시 · 점수 내림차순 정렬</div>
+      <div id="chart-distribution"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== Comparison with national 고2 (dark) ========== -->
+<section class="tile tile-dark" id="national">
+  <div class="tile-inner reveal">
+    <div class="eyebrow section-only">2024년 고2 비교</div>
+    <div class="chart-card">
+      <div class="chart-title">등급별 학생 수 — 우리 반 vs 2024 고2 전체</div>
+      <div class="chart-sub">등급 컷: 1등급 90+ · 2등급 80+ · 3등급 70+ · 4등급 60+ · 5등급 50+ · 6등급 40+ · 7등급 30+ · 8등급 20+ · 9등급 0+</div>
+      <div id="chart-grades"></div>
+      <div id="grade-table" class="reveal" style="margin-top:32px;"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== Listening adjustment explanation (light) ========== -->
+<section class="tile tile-light" id="listening">
+  <div class="tile-inner reveal">
+    <div class="eyebrow section-only">듣기 보정</div>
+    <div class="chart-card" style="margin-top:0;">
+      <div class="chart-title">회차별 반 평균 정답률</div>
+      <div class="chart-sub">독해와 듣기, 그리고 이번 X4 Prime Term Test까지</div>
+      <div id="chart-class-trend"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== Most missed questions (parchment) ========== -->
+<section class="tile tile-parchment" id="questions">
+  <div class="tile-inner reveal">
+    <div class="eyebrow section-only">문항 분석</div>
+    <div id="hard-questions" style="margin-top:40px;"></div>
+  </div>
+</section>
+
+<!-- ========== Student access (dark) ========== -->
+<section class="tile tile-dark" id="access">
+  <div class="tile-inner-narrow tile-inner reveal" style="text-align:center;">
+    <div class="eyebrow section-only">학생 페이지</div>
+
+    <div class="login-card" style="text-align:left;">
+      <h3>학생 페이지 진입</h3>
+      <p class="help">이름과 인증 문구를 정확히 입력해 주세요.</p>
+
+      <div class="form-field">
+        <label for="login-name">이름</label>
+        <input type="text" id="login-name" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="예) 홍길동">
+      </div>
+
+      <div class="form-field">
+        <label for="login-cred">인증 문구</label>
+        <input type="password" id="login-cred" autocomplete="off" placeholder="선생님이 안내한 문구">
+      </div>
+
+      <p class="form-error" id="login-error">이름 또는 인증 문구가 맞지 않습니다.</p>
+
+      <div class="form-action">
+        <button class="btn-pill" id="login-btn" onclick="handleLogin()">진입하기 →</button>
+        
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== Footer ========== -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <img src="images/canb_logo_small.png" alt="CANB English">
+    </div>
+    <p class="footer-text">CANB English · 26 Spring X4 Prime Term Test Score Report</p>
+  </div>
+</footer>
+
+<script src="data/class_stats.inline.js"></script>
+<script src="data/profiles.inline.js"></script>
+<script src="assets/crypto.js"></script>
+<script src="assets/charts.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>
