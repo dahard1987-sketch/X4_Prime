@@ -5,6 +5,60 @@
 let CLASS_STATS = null;
 let ENC_PROFILES = null;
 
+const DEMO_PROFILE = {
+  isDemo: true,
+  name: '김캔비',
+  grade: 3,
+  total: 74,
+  reading: 38,
+  listening: 36,
+  mt2ReadingAcc: 38 / 63,
+  listeningDetail: {
+    totalCorrect: 162,
+    totalAttempted: 170,
+    accuracy: 162 / 170,
+    score37: 36,
+    rounds: [
+      { round: '1회', correct: 16, attempted: 17, blank: 0 },
+      { round: '2회', correct: 17, attempted: 17, blank: 0 },
+      { round: '3회', correct: 16, attempted: 17, blank: 0 },
+      { round: '4회', correct: 17, attempted: 17, blank: 0 },
+      { round: '5회', correct: 16, attempted: 17, blank: 0 },
+      { round: '6회', correct: 15, attempted: 17, blank: 0 },
+      { round: '7회', correct: 17, attempted: 17, blank: 0 },
+      { round: '8회', correct: 16, attempted: 17, blank: 0 },
+      { round: '9회', correct: 16, attempted: 17, blank: 0 },
+      { round: '10회', correct: 16, attempted: 17, blank: 0 },
+    ],
+  },
+  roundHistory: [
+    { round: '1회', readingAcc: 0.64, listeningAcc: 16 / 17 },
+    { round: '2회', readingAcc: 0.71, listeningAcc: 1 },
+    { round: '3회', readingAcc: 0.75, listeningAcc: 16 / 17 },
+    { round: '4회', readingAcc: 0.79, listeningAcc: 1 },
+    { round: '5회', readingAcc: 0.82, listeningAcc: 16 / 17 },
+    { round: '6회', readingAcc: 0.75, listeningAcc: 15 / 17 },
+    { round: '7회', readingAcc: 0.86, listeningAcc: 1 },
+    { round: '8회', readingAcc: 0.79, listeningAcc: 16 / 17 },
+    { round: '9회', readingAcc: 0.82, listeningAcc: 16 / 17 },
+    { round: '10회', readingAcc: 0.86, listeningAcc: 16 / 17 },
+  ],
+  wrong: [
+    { q: 21, answer: 5, correct: 4, points: 2 },
+    { q: 24, answer: 2, correct: 3, points: 2 },
+    { q: 30, answer: 2, correct: 4, points: 3 },
+    { q: 32, answer: 4, correct: 1, points: 2 },
+    { q: 33, answer: 3, correct: 2, points: 3 },
+    { q: 36, answer: 1, correct: 2, points: 2 },
+    { q: 37, answer: 3, correct: 5, points: 3 },
+    { q: 39, answer: 2, correct: 5, points: 2 },
+    { q: 40, answer: 5, correct: 1, points: 3 },
+    { q: 41, answer: 4, correct: 5, points: 2 },
+    { q: 42, answer: 5, correct: 4, points: 3 },
+    { q: 45, answer: 4, correct: 2, points: 2 },
+  ],
+};
+
 
 function showDataLoadError(message) {
   ['kpi-mean', 'kpi-range', 'kpi-reading', 'kpi-listening'].forEach(id => {
@@ -35,6 +89,7 @@ async function bootstrap() {
   renderDistribution();
   renderGrades();
   renderListeningTrend();
+  renderReadingRounds();
   renderHardQuestions();
 
   // Pre-fetch encrypted profiles (small, ~60 KB)
@@ -150,6 +205,39 @@ function renderListeningTrend() {
   );
 }
 
+function renderReadingRounds() {
+  const rounds = CLASS_STATS.roundHistory || [];
+  const grid = document.getElementById('reading-grid');
+  if (!grid) return;
+
+  const current = CLASS_STATS.mt2ClassReadingAvg !== undefined
+    ? CLASS_STATS.mt2ClassReadingAvg
+    : CLASS_STATS.readingMean / CLASS_STATS.maxReading;
+
+  grid.innerHTML = rounds.map(r => {
+    const pct = r.classReadingAvg !== null && r.classReadingAvg !== undefined ? r.classReadingAvg * 100 : null;
+    return `<div class="round-cell">
+      <div class="rc-label">${r.round}</div>
+      <div class="rc-value">${pct === null ? '—' : pct.toFixed(0) + '<span style="font-size:14px; color:var(--ink-mute);">%</span>'}</div>
+      <div class="rc-detail">${r.numReadingContrib || 0}명 반영</div>
+    </div>`;
+  }).join('') + `<div class="round-cell">
+    <div class="rc-label">이번 시험</div>
+    <div class="rc-value">${(current * 100).toFixed(0)}<span style="font-size:14px; color:var(--ink-mute);">%</span></div>
+    <div class="rc-detail">18-45 기준</div>
+  </div>`;
+
+  const valid = rounds
+    .map(r => r.classReadingAvg)
+    .filter(v => v !== null && v !== undefined);
+  const prevAvg = valid.reduce((sum, v) => sum + v, 0) / valid.length;
+  const change = current - prevAvg;
+
+  document.getElementById('rd-prev-avg').textContent = `${(prevAvg * 100).toFixed(1)}%`;
+  document.getElementById('rd-current-avg').textContent = `${(current * 100).toFixed(1)}%`;
+  document.getElementById('rd-change').textContent = `${change >= 0 ? '+' : ''}${(change * 100).toFixed(1)}%p`;
+}
+
 function renderHardQuestions() {
   const stats = CLASS_STATS.questionStats;
   const items = Object.keys(stats).map(q => ({
@@ -229,7 +317,8 @@ async function handleLogin() {
     errEl.classList.add('show');
     return;
   }
-  if (!ENC_PROFILES) {
+  const isDemoLogin = name === '김캔비' && cred === '빠른 선인장';
+  if (!ENC_PROFILES && !isDemoLogin) {
     errEl.textContent = '데이터를 아직 불러오는 중입니다. 잠시 후 다시 시도해 주세요.';
     errEl.classList.add('show');
     return;
@@ -239,7 +328,9 @@ async function handleLogin() {
   btn.textContent = '확인 중…';
 
   try {
-    const profile = await unlockProfile(ENC_PROFILES, name, cred);
+    const profile = isDemoLogin
+      ? DEMO_PROFILE
+      : await unlockProfile(ENC_PROFILES, name, cred);
     // Stash in sessionStorage, then navigate
     sessionStorage.setItem('canb_profile', JSON.stringify(profile));
     sessionStorage.setItem('canb_classStats', JSON.stringify(CLASS_STATS));

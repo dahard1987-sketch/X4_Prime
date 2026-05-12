@@ -113,6 +113,8 @@ a:hover { text-decoration: underline; }
   font-size: 13px;
   font-weight: 500;
   letter-spacing: 0.01em;
+  text-decoration: none;
+  cursor: pointer;
 }
 .global-nav .gn-brand img { height: 22px; width: auto; opacity: 1; }
 .global-nav .gn-links {
@@ -368,6 +370,30 @@ a:hover { text-decoration: underline; }
   color: var(--ink-mute);
   margin-bottom: var(--space-7);
 }
+.listening-note {
+  margin-top: calc(var(--space-5) * -1);
+  margin-bottom: var(--space-6);
+}
+.demo-help {
+  margin-top: calc(var(--space-5) * -1);
+  margin-bottom: var(--space-5);
+  color: var(--ink-faint);
+}
+.tile-dark .demo-help { color: var(--on-dark-faint); }
+.reading-summary {
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid var(--divider);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px;
+}
+.reading-summary-value {
+  font-family: var(--font-display);
+  font-size: 36px;
+  line-height: 1;
+}
+.reading-summary-value.accent { color: var(--magenta); }
 
 /* ============================================================
    Login form

@@ -12,9 +12,9 @@
 <!-- ========== Global Nav ========== -->
 <header class="global-nav">
   <div class="gn-inner">
-    <div class="gn-brand">
+    <a class="gn-brand" href="index.html" aria-label="처음 화면으로 이동">
       <img src="images/canb_logo_small.png" alt="CANB English">
-    </div>
+    </a>
     <nav class="gn-links">
       <a href="index.html">← 반 전체</a>
       <a href="#position">위치</a>
@@ -133,6 +133,25 @@
   <section class="tile tile-light" id="trend">
     <div class="tile-inner reveal">
       <div class="eyebrow section-only">학기 추이</div>
+      <div class="chart-card">
+        <div class="chart-title">회차별 독해 정답률</div>
+        <div class="chart-sub">기존 제출한 독해(18-45)와 이번 시험 독해 정답률을 같은 기준으로 비교합니다.</div>
+        <div id="profile-reading-grid" class="round-grid"></div>
+        <div class="reading-summary">
+          <div>
+            <div class="caption">기존 평균</div>
+            <div class="mono reading-summary-value" id="prd-prev-avg">—</div>
+          </div>
+          <div>
+            <div class="caption">이번 시험 독해</div>
+            <div class="mono reading-summary-value" id="prd-current-avg">—</div>
+          </div>
+          <div>
+            <div class="caption">변화</div>
+            <div class="mono reading-summary-value accent" id="prd-change">—</div>
+          </div>
+        </div>
+      </div>
       <div class="chart-card">
         <div class="chart-title">독해 · 듣기 정답률 추이</div>
         <div class="chart-sub">정답률(%)은 빈 답(미응시)을 제외하고 계산</div>

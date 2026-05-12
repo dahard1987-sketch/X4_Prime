@@ -44,14 +44,16 @@ function renderProfile(profile, classStats) {
   renderPosition(profile, classStats);
   renderNational(profile, classStats);
   renderListeningDetail(profile);
+  renderReadingDetail(profile, classStats);
   renderTrend(profile, classStats);
   renderWrongList(profile, classStats);
 }
 
 function renderPosition(profile, classStats) {
-  const scores = classStats.scoreDistribution.slice();
+  const baseScores = classStats.scoreDistribution.slice();
+  const scores = profile.isDemo ? baseScores.concat([profile.total]).sort((a, b) => b - a) : baseScores;
   const rank = scores.findIndex(s => s === profile.total) + 1;
-  const n = scores.length;
+  const n = baseScores.length;
 
   // Build chart data with student highlighted
   // Since there may be duplicate scores, we use position-by-rank: highlight the first match
@@ -72,6 +74,9 @@ function renderPosition(profile, classStats) {
   const equal = scores.filter(s => s === profile.total).length;
   const diffFromMean = profile.total - classStats.mean;
   let msg = '';
+  if (profile.isDemo) {
+    msg = `예시 계정입니다. 이 학생은 실제 반 통계와 전체 평균에는 포함되지 않습니다. 표시 위치만 참고용으로 보여줍니다.`;
+  } else
   if (above === 0) {
     msg = `반에서 가장 높은 점수입니다. (총 ${n}명)`;
   } else {
@@ -164,6 +169,45 @@ function renderListeningDetail(profile) {
   document.getElementById('lt-totals').textContent = `${ld.totalCorrect} / ${ld.totalAttempted}`;
   document.getElementById('lt-acc').textContent = `${(ld.accuracy * 100).toFixed(2)}%`;
   document.getElementById('lt-score').textContent = `${ld.score37} / 37`;
+}
+
+function renderReadingDetail(profile, classStats) {
+  const studentHist = profile.roundHistory || [];
+  const classHist = classStats.roundHistory || [];
+  const sMap = {};
+  studentHist.forEach(r => { sMap[r.round] = r; });
+
+  const grid = document.getElementById('profile-reading-grid');
+  if (!grid) return;
+
+  const currentReadingAcc = profile.mt2ReadingAcc !== undefined
+    ? profile.mt2ReadingAcc
+    : profile.reading / classStats.maxReading;
+
+  grid.innerHTML = classHist.map(cr => {
+    const sr = sMap[cr.round];
+    const pct = sr && sr.readingAcc !== null && sr.readingAcc !== undefined ? sr.readingAcc * 100 : null;
+    return `<div class="round-cell${pct === null ? ' miss' : ''}">
+      <div class="rc-label">${cr.round}</div>
+      <div class="rc-value">${pct === null ? '—' : pct.toFixed(0) + '<span style="font-size:14px; color:var(--ink-mute);">%</span>'}</div>
+      <div class="rc-detail">${pct === null ? '미응시' : '18-45 기준'}</div>
+    </div>`;
+  }).join('') + `<div class="round-cell">
+    <div class="rc-label">이번 시험</div>
+    <div class="rc-value">${(currentReadingAcc * 100).toFixed(0)}<span style="font-size:14px; color:var(--ink-mute);">%</span></div>
+    <div class="rc-detail">${profile.reading} / ${classStats.maxReading}</div>
+  </div>`;
+
+  const valid = studentHist
+    .map(r => r.readingAcc)
+    .filter(v => v !== null && v !== undefined);
+  const prevAvg = valid.length ? valid.reduce((sum, v) => sum + v, 0) / valid.length : null;
+  const current = currentReadingAcc;
+  const change = prevAvg === null ? null : current - prevAvg;
+
+  document.getElementById('prd-prev-avg').textContent = prevAvg === null ? '—' : `${(prevAvg * 100).toFixed(1)}%`;
+  document.getElementById('prd-current-avg').textContent = `${(current * 100).toFixed(1)}%`;
+  document.getElementById('prd-change').textContent = change === null ? '—' : `${change >= 0 ? '+' : ''}${(change * 100).toFixed(1)}%p`;
 }
 
 function renderTrend(profile, classStats) {
