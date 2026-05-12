@@ -235,10 +235,16 @@ function renderTrend(profile, classStats) {
   });
   // Append X4 Prime Term Test (this test)
   const mt2X = classHist.length;
+  const mt2StudentListening = classStats.maxListening
+    ? +(profile.listening / classStats.maxListening * 100).toFixed(1)
+    : null;
+  const mt2ClassListening = classStats.maxListening
+    ? +(classStats.listeningMean / classStats.maxListening * 100).toFixed(1)
+    : null;
   studentReading.push({ x: mt2X, y: profile.mt2ReadingAcc !== undefined ? +(profile.mt2ReadingAcc * 100).toFixed(1) : null });
-  studentListening.push({ x: mt2X, y: null });
+  studentListening.push({ x: mt2X, y: mt2StudentListening });
   classReading.push({ x: mt2X, y: classStats.mt2ClassReadingAvg ? +(classStats.mt2ClassReadingAvg * 100).toFixed(1) : null });
-  classListening.push({ x: mt2X, y: null });
+  classListening.push({ x: mt2X, y: mt2ClassListening });
 
   renderLineChart(
     document.getElementById('chart-trend'),
