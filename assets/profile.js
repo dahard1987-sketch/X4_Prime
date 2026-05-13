@@ -29,6 +29,7 @@ function init() {
   const profile = JSON.parse(profileRaw);
   const classStats = JSON.parse(classRaw);
   document.getElementById('profile-content').style.display = 'block';
+  initScrollTopButton();
   initAdminSwitcher(classStats);
   renderProfile(profile, classStats);
 }
@@ -55,8 +56,16 @@ function initAdminSwitcher(classStats) {
     if (!next) return;
     sessionStorage.setItem('canb_profile', JSON.stringify(next));
     renderProfile(next, classStats);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
+}
+
+function initScrollTopButton() {
+  const button = document.getElementById('scroll-top-button');
+  if (!button || button.dataset.ready === '1') return;
+  button.dataset.ready = '1';
+  button.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
 }
 
 function renderProfile(profile, classStats) {
@@ -73,6 +82,7 @@ function renderProfile(profile, classStats) {
   document.getElementById('ph-reading').textContent = profile.reading;
   document.getElementById('ph-listening').textContent = profile.listening;
 
+  renderTermComment(profile);
   renderPosition(profile, classStats);
   renderNational(profile, classStats);
   renderListeningDetail(profile);
@@ -84,6 +94,23 @@ function renderProfile(profile, classStats) {
     profile.name
   );
   renderWrongList(profile, classStats);
+}
+
+function renderTermComment(profile) {
+  const card = document.getElementById('term-comment-card');
+  const nativeEl = document.getElementById('native-comment');
+  const koreanEl = document.getElementById('korean-comment');
+  if (!card || !nativeEl || !koreanEl) return;
+
+  const comment = profile.termComment;
+  if (!comment) {
+    card.style.display = 'none';
+    return;
+  }
+
+  nativeEl.textContent = comment.native;
+  koreanEl.textContent = comment.korean;
+  card.style.display = 'block';
 }
 
 function renderPosition(profile, classStats) {

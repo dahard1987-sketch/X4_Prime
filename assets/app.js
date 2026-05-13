@@ -336,9 +336,17 @@ async function handleLogin() {
     if (isAdminLogin) {
       const adminProfiles = window.__ADMIN_PROFILES__ && window.__ADMIN_PROFILES__.profiles;
       if (!adminProfiles || adminProfiles.length === 0) throw new Error('admin_profiles_missing');
+      let adminComments = {};
+      if (window.__ADMIN_COMMENTS__) {
+        adminComments = await unlockProfile(window.__ADMIN_COMMENTS__, name, cred);
+      }
+      const enrichedAdminProfiles = adminProfiles.map(profile => ({
+        ...profile,
+        termComment: adminComments[profile.name],
+      }));
       sessionStorage.setItem('canb_admin', '1');
-      sessionStorage.setItem('canb_adminProfiles', JSON.stringify(adminProfiles));
-      sessionStorage.setItem('canb_profile', JSON.stringify(adminProfiles[0]));
+      sessionStorage.setItem('canb_adminProfiles', JSON.stringify(enrichedAdminProfiles));
+      sessionStorage.setItem('canb_profile', JSON.stringify(enrichedAdminProfiles[0]));
       sessionStorage.setItem('canb_classStats', JSON.stringify(CLASS_STATS));
       window.location.href = 'profile.html';
       return;

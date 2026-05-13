@@ -82,6 +82,20 @@
   <!-- ========== Position in class (light) ========== -->
   <section class="tile tile-light" id="position">
     <div class="tile-inner reveal">
+      <div class="term-comment-card" id="term-comment-card" style="display:none;">
+        <div class="term-comment-title">Teacher Comment</div>
+        <div class="term-comment-grid">
+          <div class="term-comment-item">
+            <div class="term-comment-label">원어민 선생님</div>
+            <p id="native-comment">—</p>
+          </div>
+          <div class="term-comment-item">
+            <div class="term-comment-label">한국인 선생님</div>
+            <p id="korean-comment">—</p>
+          </div>
+        </div>
+      </div>
+
       <div class="eyebrow section-only">반 내 위치</div>
       <p class="lead" style="margin-top:16px; max-width:680px;" id="position-lead">—</p>
 
@@ -188,6 +202,8 @@
   </footer>
 
 </div>
+
+<button class="floating-top-button" id="scroll-top-button" type="button" aria-label="맨 위로 이동" title="맨 위로 이동">↑</button>
 
 <script src="assets/crypto.js"></script>
 <script src="assets/charts.js"></script>
