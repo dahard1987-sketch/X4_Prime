@@ -118,7 +118,7 @@ function renderKPIs() {
 
 function renderDistribution() {
   const scores = CLASS_STATS.scoreDistribution;
-  const data = scores.map((v, i) => ({ label: `S${String(i + 1).padStart(2, '0')}`, value: v }));
+  const data = scores.map((v, i) => ({ label: `#${i + 1}`, value: v }));
   renderBarChart(
     document.getElementById('chart-distribution'),
     data,
@@ -253,6 +253,7 @@ function renderHardQuestions() {
   const top = items.slice(0, 5);
 
   const wrap = document.getElementById('hard-questions');
+  wrap.className = 'hard-question-grid';
   wrap.innerHTML = top.map(item => {
     const distEntries = Object.entries(item.answerDistribution)
       .sort((a, b) => parseInt(a[0]) - parseInt(b[0]));
@@ -270,9 +271,9 @@ function renderHardQuestions() {
     }).join('');
 
     return `
-      <details class="q-card" style="margin-bottom:16px;">
-        <summary style="list-style:none; cursor:pointer; padding:24px 32px; display:flex; align-items:center; justify-content:space-between; background:var(--canvas);">
-          <div style="display:flex; align-items:baseline; gap:24px;">
+      <article class="q-card q-card-expanded">
+        <div class="q-summary">
+          <div class="q-summary-grid">
             <div style="font-family:var(--font-display); font-size:42px; line-height:1; color:var(--magenta);">${item.q}</div>
             <div>
               <div style="font-size:13px; color:var(--ink-mute); letter-spacing:0.04em; text-transform:uppercase; margin-bottom:4px;">반 정답률</div>
@@ -287,9 +288,8 @@ function renderHardQuestions() {
               <div style="font-family:var(--font-display); font-size:28px; line-height:1;">${item.points}<span style="font-family:var(--font-body); font-size:16px; color:var(--ink-mute);">점</span></div>
             </div>
           </div>
-          <div style="font-size:13px; color:var(--ink-mute);">펼치기 ▾</div>
-        </summary>
-        <div style="padding:0 32px 32px 32px;">
+        </div>
+        <div class="q-expanded-body">
           <div style="margin-bottom:24px;">
             <div style="font-size:13px; color:var(--ink-mute); letter-spacing:0.04em; text-transform:uppercase; margin-bottom:12px;">반 응답 분포</div>
             <div style="display:flex; gap:8px; align-items:flex-end;">${distBar}</div>
@@ -299,7 +299,7 @@ function renderHardQuestions() {
             <img src="images/questions/q${item.q}.jpg" alt="문항 ${item.q}" style="width:100%; max-width:680px; border-radius:8px; box-shadow:var(--shadow-product);">
           </div>
         </div>
-      </details>`;
+      </article>`;
   }).join('');
 }
 

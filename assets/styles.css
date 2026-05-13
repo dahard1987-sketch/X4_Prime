@@ -559,12 +559,36 @@ a:hover { text-decoration: underline; }
 }
 
 /* Question card */
+.hard-question-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
 .q-card {
   background: var(--canvas);
   border: 1px solid var(--hairline);
   border-radius: var(--r-md);
   overflow: hidden;
   margin-bottom: 0;
+}
+.q-card-expanded {
+  align-self: start;
+}
+.q-summary {
+  padding: 24px 24px 18px;
+  background: var(--canvas);
+}
+.q-summary-grid {
+  display: grid;
+  grid-template-columns: auto repeat(3, minmax(0, 1fr));
+  align-items: end;
+  gap: 18px;
+}
+.q-summary > div:not(.q-summary-grid) {
+  display: none;
+}
+.q-expanded-body {
+  padding: 0 24px 24px;
 }
 .q-card .q-header {
   display: flex;
@@ -646,7 +670,18 @@ a:hover { text-decoration: underline; }
   gap: 16px;
 }
 @media (max-width: 760px) {
+  .hard-question-grid,
   .q-grid { grid-template-columns: 1fr; }
+  .q-summary {
+    padding: 20px 18px 16px;
+  }
+  .q-summary-grid {
+    grid-template-columns: auto repeat(3, minmax(58px, 1fr));
+    gap: 14px;
+  }
+  .q-expanded-body {
+    padding: 0 18px 20px;
+  }
 }
 
 /* Listening round breakdown */
