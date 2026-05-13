@@ -98,7 +98,7 @@ function renderPosition(profile, classStats) {
   const data = scores.map((v, i) => {
     const isMe = (!highlighted && v === profile.total);
     if (isMe) highlighted = true;
-    return { label: `S${String(i + 1).padStart(2, '0')}`, value: v, highlight: isMe };
+    return { label: isMe ? profile.name : `#${i + 1}`, value: v, highlight: isMe };
   });
   renderBarChart(
     document.getElementById('chart-class-position'),
