@@ -838,10 +838,10 @@ a:hover { text-decoration: underline; }
   color: var(--ink);
   font-size: 13px;
 }
-.hm-good { background: #d95f4f; color: #fff; }
-.hm-watch { background: #f0b59f; color: #5d2b20; }
-.hm-risk { background: #c9d7ee; color: #243b5c; }
-.hm-danger { background: #6f92df; color: #fff; }
+.hm-good { background: #9fd9b3; color: #14562f; }
+.hm-watch { background: #d8eac7; color: #425f1e; }
+.hm-risk { background: #f2c5b9; color: #7a2d1c; }
+.hm-danger { background: #d9695d; color: #fff; }
 .hm-empty { background: #f1f1f3; color: var(--ink-faint); }
 .hm-missing {
   width: 100%;
@@ -849,10 +849,10 @@ a:hover { text-decoration: underline; }
   color: var(--ink-faint);
   font-size: 10px;
 }
-.hm-correct { background: #d95f4f; color: #fff; }
-.hm-wrong-soft { background: #c9d7ee; color: #243b5c; }
-.hm-wrong-mid { background: #94afe5; color: #162b4d; }
-.hm-wrong-strong { background: #5e83d4; color: #fff; }
+.hm-correct { background: #9fd9b3; color: #14562f; }
+.hm-wrong-soft { background: #f3c8be; color: #7a2d1c; }
+.hm-wrong-mid { background: #e89386; color: #6f1f14; }
+.hm-wrong-strong { background: #cf5148; color: #fff; }
 .hm-hard-row th,
 .hm-hard-row td {
   background: #fff8e6;

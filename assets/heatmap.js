@@ -128,7 +128,7 @@ function renderStudentReadingHeatmap(target, heatmap, studentName) {
             <th class="hm-sticky-col">문항</th>
             <th>유형</th>
             ${heatmap.rounds.map(r => `<th class="${r === 'Term Test' ? 'hm-term-col' : ''}">${roundHeader(r)}</th>`).join('')}
-            <th class="hm-total-col">본인 정답률</th>
+            <th class="hm-total-col">학기 전체 정답률</th>
           </tr>
         </thead>
         <tbody>
@@ -147,7 +147,7 @@ function renderStudentReadingHeatmap(target, heatmap, studentName) {
                 ${heatmap.rounds.map(r => {
                   const value = student.cells[r][String(q)];
                   const missing = isMissingRound(student, r);
-                  const label = missing ? '미제출' : (value === null || value === undefined ? '-' : (value ? '정' : '오'));
+                  const label = missing ? '미제출' : (value === null || value === undefined ? '-' : (value ? 'O' : 'X'));
                   const cls = missing ? 'hm-missing' : studentCellClass(value, typeStats);
                   return `<td class="${r === 'Term Test' ? 'hm-term-col' : ''}"><span class="hm-cell ${cls}" title="${r} ${q}번: ${label}">${label}</span></td>`;
                 }).join('')}
