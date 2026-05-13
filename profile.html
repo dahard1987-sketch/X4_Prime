@@ -32,6 +32,10 @@
     <div class="sn-title" id="sub-title">학생 성적 분석</div>
     <div class="sn-actions">
       <span class="caption">26SP X4 Prime Term Test</span>
+      <span class="admin-switcher" id="admin-switcher" style="display:none;">
+        <label for="admin-student-select">학생</label>
+        <select id="admin-student-select"></select>
+      </span>
       <a href="index.html" class="caption" style="color:var(--ink-mute);">반 전체로 →</a>
     </div>
   </div>
@@ -164,6 +168,11 @@
   <section class="tile tile-parchment" id="wrong">
     <div class="tile-inner reveal">
       <div class="eyebrow section-only">오답 분석</div>
+      <div class="chart-card" style="margin-top:0;">
+        <div class="chart-title">독해 문항별 정오 히트맵</div>
+        <div class="chart-sub">모의고사 1-10회와 Term Test의 18-45번 정오를 문항 유형표 기준으로 묶었습니다. 오답 색은 같은 유형을 많이 틀릴수록 진해지고, (고난도) 행과 약점 유형은 더 두껍게 표시됩니다.</div>
+        <div id="student-reading-heatmap"></div>
+      </div>
       <div id="wrong-list" style="margin-top:48px;"></div>
     </div>
   </section>
@@ -185,6 +194,9 @@
 
 <script src="assets/crypto.js"></script>
 <script src="assets/charts.js"></script>
+<script src="data/reading_heatmap.inline.js"></script>
+<script src="data/admin_profiles.inline.js"></script>
+<script src="assets/heatmap.js"></script>
 <script src="assets/profile.js"></script>
 </body>
 </html>

@@ -128,6 +128,11 @@
 <section class="tile tile-parchment" id="questions">
   <div class="tile-inner reveal">
     <div class="eyebrow section-only">문항 분석</div>
+    <div class="chart-card" style="margin-top:0;">
+      <div class="chart-title">독해 문항별 정답률 히트맵</div>
+      <div class="chart-sub">모의고사 1-10회와 Term Test의 18-45번 독해 문항을 같은 유형표 기준으로 계산했습니다. 색이 진할수록 반 정답률이 낮고, (고난도) 행과 약점 유형은 더 도드라지게 표시됩니다.</div>
+      <div id="class-reading-heatmap"></div>
+    </div>
     <div id="hard-questions" style="margin-top:40px;"></div>
   </div>
 </section>
@@ -174,8 +179,11 @@
 
 <script src="data/class_stats.inline.js"></script>
 <script src="data/profiles.inline.js"></script>
+<script src="data/reading_heatmap.inline.js"></script>
+<script src="data/admin_profiles.inline.js"></script>
 <script src="assets/crypto.js"></script>
 <script src="assets/charts.js"></script>
+<script src="assets/heatmap.js"></script>
 <script src="assets/app.js"></script>
 </body>
 </html>

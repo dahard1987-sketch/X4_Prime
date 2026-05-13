@@ -167,6 +167,27 @@ a:hover { text-decoration: underline; }
 .sub-nav .sn-actions .caption { color: var(--ink) !important; font-weight: 600; }
 .sub-nav .sn-actions .btn-pill { color: #fff !important; }
 .sub-nav .sn-actions .btn-pill:hover { color: #fff !important; }
+.admin-switcher {
+  align-items: center;
+  gap: 8px;
+}
+.admin-switcher label {
+  font-size: 12px;
+  color: var(--ink-mute);
+  font-weight: 700;
+}
+.admin-switcher select {
+  height: 32px;
+  min-width: 116px;
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-sm);
+  background: var(--canvas);
+  color: var(--ink);
+  padding: 0 28px 0 10px;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 700;
+}
 
 
 /* ============================================================
@@ -654,6 +675,144 @@ a:hover { text-decoration: underline; }
   border-color: rgba(185, 17, 112, 0.18);
 }
 .round-cell.miss .rc-value { color: var(--magenta-deep); }
+
+/* Reading heatmap */
+.hm-type-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 0 24px;
+}
+.hm-type-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 32px;
+  padding: 6px 10px;
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-sm);
+  background: var(--pearl);
+  font-size: 12px;
+  color: var(--ink-mute);
+}
+.hm-type-chip strong {
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+.hm-type-chip small { color: var(--ink-faint); }
+.hm-type-chip.weak {
+  border-width: 2px;
+  border-color: rgba(185, 17, 112, 0.55);
+  background: rgba(185, 17, 112, 0.07);
+}
+.hm-scroll {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.hm-table {
+  width: max-content;
+  min-width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 12px;
+}
+.hm-table th,
+.hm-table td {
+  border-right: 1px solid var(--divider);
+  border-bottom: 1px solid var(--divider);
+  padding: 7px 6px;
+  text-align: center;
+  vertical-align: middle;
+  background: var(--canvas);
+}
+.hm-table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: var(--pearl);
+  color: var(--ink-mute);
+  font-weight: 600;
+  white-space: nowrap;
+}
+.hm-sticky-col {
+  position: sticky;
+  left: 0;
+  z-index: 3;
+  box-shadow: 1px 0 0 var(--divider);
+}
+.hm-table thead .hm-sticky-col { z-index: 4; }
+.hm-q {
+  width: 76px;
+  color: var(--ink);
+}
+.hm-q span {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 22px;
+  line-height: 1;
+}
+.hm-q small {
+  display: block;
+  margin-top: 3px;
+  color: var(--magenta-deep);
+  font-size: 10px;
+  font-weight: 700;
+}
+.hm-type {
+  width: 170px;
+  text-align: left !important;
+}
+.hm-type strong,
+.hm-type small {
+  display: block;
+}
+.hm-type strong {
+  color: var(--ink);
+  font-size: 12px;
+}
+.hm-type small {
+  margin-top: 2px;
+  color: var(--ink-mute);
+  line-height: 1.25;
+}
+.hm-cell,
+.hm-rate {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  min-height: 30px;
+  border-radius: 6px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+}
+.hm-rate { width: 54px; }
+.hm-good { background: #dcefe3; color: #0b6b3a; }
+.hm-watch { background: #fff0bf; color: #765300; }
+.hm-risk { background: #ffd4b8; color: #8a3c00; }
+.hm-danger { background: #f5a5b7; color: #7a0d2a; }
+.hm-empty { background: #f1f1f3; color: var(--ink-faint); }
+.hm-correct { background: #dcefe3; color: #0b6b3a; }
+.hm-wrong-soft { background: #f8d4dd; color: #8c0c54; }
+.hm-wrong-mid { background: #ee8daa; color: #6f073f; }
+.hm-wrong-strong { background: #b91170; color: #fff; }
+.hm-hard-row th,
+.hm-hard-row td {
+  background: #fff8e6;
+}
+.hm-hard-row .hm-sticky-col {
+  border-left: 3px solid #d39b00;
+}
+.hm-weak-row th,
+.hm-weak-row td {
+  border-top: 2px solid rgba(185, 17, 112, 0.42);
+  border-bottom: 2px solid rgba(185, 17, 112, 0.42);
+}
+.hm-weak-row .hm-sticky-col {
+  border-left: 3px solid var(--magenta);
+}
 
 /* ============================================================
    Footer

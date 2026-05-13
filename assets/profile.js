@@ -14,6 +14,8 @@ function scoreToGrade(score, bands) {
 function logout() {
   sessionStorage.removeItem('canb_profile');
   sessionStorage.removeItem('canb_classStats');
+  sessionStorage.removeItem('canb_admin');
+  sessionStorage.removeItem('canb_adminProfiles');
   window.location.href = 'index.html';
 }
 
@@ -27,12 +29,42 @@ function init() {
   const profile = JSON.parse(profileRaw);
   const classStats = JSON.parse(classRaw);
   document.getElementById('profile-content').style.display = 'block';
+  initAdminSwitcher(classStats);
   renderProfile(profile, classStats);
+}
+
+function getAdminProfiles() {
+  const raw = sessionStorage.getItem('canb_adminProfiles');
+  if (raw) return JSON.parse(raw);
+  return (window.__ADMIN_PROFILES__ && window.__ADMIN_PROFILES__.profiles) || [];
+}
+
+function initAdminSwitcher(classStats) {
+  if (sessionStorage.getItem('canb_admin') !== '1') return;
+  const wrap = document.getElementById('admin-switcher');
+  const select = document.getElementById('admin-student-select');
+  if (!wrap || !select) return;
+
+  const profiles = getAdminProfiles();
+  const current = JSON.parse(sessionStorage.getItem('canb_profile'));
+  wrap.style.display = 'flex';
+  select.innerHTML = profiles.map(p => `<option value="${p.name}">${p.name}</option>`).join('');
+  select.value = current.name;
+  select.onchange = () => {
+    const next = profiles.find(p => p.name === select.value);
+    if (!next) return;
+    sessionStorage.setItem('canb_profile', JSON.stringify(next));
+    renderProfile(next, classStats);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 }
 
 function renderProfile(profile, classStats) {
   document.title = `${profile.name} · CANB English X4 Prime Term Test`;
   document.getElementById('sub-title').textContent = `${profile.name} · 성적 분석`;
+  if (!profile.grade) profile.grade = scoreToGrade(profile.total, classStats.high2.distribution);
+  const adminSelect = document.getElementById('admin-student-select');
+  if (adminSelect && adminSelect.value !== profile.name) adminSelect.value = profile.name;
 
   // Hero
   document.getElementById('ph-name').textContent = profile.name;
@@ -46,6 +78,11 @@ function renderProfile(profile, classStats) {
   renderListeningDetail(profile);
   renderReadingDetail(profile, classStats);
   renderTrend(profile, classStats);
+  renderStudentReadingHeatmap(
+    document.getElementById('student-reading-heatmap'),
+    window.__READING_HEATMAP__,
+    profile.name
+  );
   renderWrongList(profile, classStats);
 }
 

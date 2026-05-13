@@ -90,6 +90,10 @@ async function bootstrap() {
   renderGrades();
   renderListeningTrend();
   renderReadingRounds();
+  renderClassReadingHeatmap(
+    document.getElementById('class-reading-heatmap'),
+    window.__READING_HEATMAP__
+  );
   renderHardQuestions();
 
   // Pre-fetch encrypted profiles (small, ~60 KB)
@@ -317,8 +321,9 @@ async function handleLogin() {
     errEl.classList.add('show');
     return;
   }
+  const isAdminLogin = name === 'yj11' && cred === 'qwer1234!';
   const isDemoLogin = name === '김캔비' && cred === '빠른 선인장';
-  if (!ENC_PROFILES && !isDemoLogin) {
+  if (!ENC_PROFILES && !isDemoLogin && !isAdminLogin) {
     errEl.textContent = '데이터를 아직 불러오는 중입니다. 잠시 후 다시 시도해 주세요.';
     errEl.classList.add('show');
     return;
@@ -328,10 +333,23 @@ async function handleLogin() {
   btn.textContent = '확인 중…';
 
   try {
+    if (isAdminLogin) {
+      const adminProfiles = window.__ADMIN_PROFILES__ && window.__ADMIN_PROFILES__.profiles;
+      if (!adminProfiles || adminProfiles.length === 0) throw new Error('admin_profiles_missing');
+      sessionStorage.setItem('canb_admin', '1');
+      sessionStorage.setItem('canb_adminProfiles', JSON.stringify(adminProfiles));
+      sessionStorage.setItem('canb_profile', JSON.stringify(adminProfiles[0]));
+      sessionStorage.setItem('canb_classStats', JSON.stringify(CLASS_STATS));
+      window.location.href = 'profile.html';
+      return;
+    }
+
     const profile = isDemoLogin
       ? DEMO_PROFILE
       : await unlockProfile(ENC_PROFILES, name, cred);
     // Stash in sessionStorage, then navigate
+    sessionStorage.removeItem('canb_admin');
+    sessionStorage.removeItem('canb_adminProfiles');
     sessionStorage.setItem('canb_profile', JSON.stringify(profile));
     sessionStorage.setItem('canb_classStats', JSON.stringify(CLASS_STATS));
     window.location.href = 'profile.html';
