@@ -139,7 +139,7 @@ function renderGrades() {
     document.getElementById('chart-grades'),
     groups,
     [
-      { name: '우리 반 (12명)', color: CHART_COLORS.magenta },
+      { name: '26SP X4 (12명)', color: CHART_COLORS.magenta },
       { name: '2024 고2 전국', color: CHART_COLORS.inkFaint },
     ],
     { yMax: null, yFormat: v => v + '%' }
@@ -152,7 +152,7 @@ function renderGrades() {
       <tr style="border-bottom:1px solid var(--hairline);">
         <th style="text-align:left; padding:12px 8px; font-weight:500; color:var(--ink-mute); font-size:12px; letter-spacing:0.06em; text-transform:uppercase;">등급</th>
         <th style="text-align:right; padding:12px 8px; font-weight:500; color:var(--ink-mute); font-size:12px; letter-spacing:0.06em; text-transform:uppercase;">점수 컷</th>
-        <th style="text-align:right; padding:12px 8px; font-weight:500; color:var(--ink-mute); font-size:12px; letter-spacing:0.06em; text-transform:uppercase;">우리 반</th>
+        <th style="text-align:right; padding:12px 8px; font-weight:500; color:var(--ink-mute); font-size:12px; letter-spacing:0.06em; text-transform:uppercase;">26SP X4</th>
         <th style="text-align:right; padding:12px 8px; font-weight:500; color:var(--ink-mute); font-size:12px; letter-spacing:0.06em; text-transform:uppercase;">고2 전국</th>
       </tr>
     </thead>
@@ -173,7 +173,7 @@ function renderGrades() {
 function renderListeningTrend() {
   const rounds = CLASS_STATS.roundHistory;
   const labels = rounds.map(r => r.round);
-  labels.push('X4 Prime Term Test');
+  labels.push("'24 고2 학평");
 
   const readingSeries = {
     name: '독해 (반 평균)',
@@ -225,8 +225,8 @@ function renderReadingRounds() {
       <div class="rc-value">${pct === null ? '—' : pct.toFixed(0) + '<span style="font-size:14px; color:var(--ink-mute);">%</span>'}</div>
       <div class="rc-detail">${r.numReadingContrib || 0}명 반영</div>
     </div>`;
-  }).join('') + `<div class="round-cell">
-    <div class="rc-label">이번 시험</div>
+  }).join('') + `<div class="round-cell final-test">
+    <div class="rc-label">'24 고2 학평</div>
     <div class="rc-value">${(current * 100).toFixed(0)}<span style="font-size:14px; color:var(--ink-mute);">%</span></div>
     <div class="rc-detail">18-45 기준</div>
   </div>`;

@@ -229,8 +229,8 @@ function renderReadingDetail(profile, classStats) {
       <div class="rc-value">${pct === null ? '—' : pct.toFixed(0) + '<span style="font-size:14px; color:var(--ink-mute);">%</span>'}</div>
       <div class="rc-detail">${pct === null ? '미응시' : '18-45 기준'}</div>
     </div>`;
-  }).join('') + `<div class="round-cell">
-    <div class="rc-label">이번 시험</div>
+  }).join('') + `<div class="round-cell final-test">
+    <div class="rc-label">'24 고2 학평</div>
     <div class="rc-value">${(currentReadingAcc * 100).toFixed(0)}<span style="font-size:14px; color:var(--ink-mute);">%</span></div>
     <div class="rc-detail">${profile.reading} / ${classStats.maxReading}</div>
   </div>`;
@@ -251,7 +251,7 @@ function renderTrend(profile, classStats) {
   const studentHist = profile.roundHistory || [];
   const classHist = classStats.roundHistory || [];
 
-  const labels = classHist.map(r => r.round).concat(['X4 Prime Term Test']);
+  const labels = classHist.map(r => r.round).concat(["'24 고2 학평"]);
 
   // Per-round lookup
   const sMap = {}, cMap = {};
@@ -305,7 +305,7 @@ function renderWrongList(profile, classStats) {
   // Sort by question number
   const wrong = [...profile.wrong].sort((a, b) => a.q - b.q);
 
-  wrap.innerHTML = wrong.map(w => {
+  wrap.innerHTML = '<div class="q-grid">' + wrong.map(w => {
     const qStat = classStats.questionStats[w.q] || {};
     const classAccPct = qStat.classAccuracy !== undefined ? (qStat.classAccuracy * 100).toFixed(0) : '—';
     return `
@@ -331,7 +331,7 @@ function renderWrongList(profile, classStats) {
           </div>
         </div>
       </div>`;
-  }).join('');
+  }).join('') + '</div>';
 }
 
 document.addEventListener('DOMContentLoaded', init);
