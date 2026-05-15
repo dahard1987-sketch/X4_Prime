@@ -42,6 +42,8 @@ function getAdminProfiles() {
 
 function initAdminSwitcher(classStats) {
   if (sessionStorage.getItem('canb_admin') !== '1') return;
+  document.body.classList.add('admin-mode');
+  updateProfileHeaderCaption();
   const wrap = document.getElementById('admin-switcher');
   const select = document.getElementById('admin-student-select');
   if (!wrap || !select) return;
@@ -57,6 +59,15 @@ function initAdminSwitcher(classStats) {
     sessionStorage.setItem('canb_profile', JSON.stringify(next));
     renderProfile(next, classStats);
   };
+}
+
+function updateProfileHeaderCaption() {
+  const caption = document.getElementById('test-caption');
+  if (!caption) return;
+  const shouldShorten = document.body.classList.contains('admin-mode')
+    && window.matchMedia
+    && window.matchMedia('(max-width: 480px)').matches;
+  caption.textContent = shouldShorten ? caption.dataset.short : caption.dataset.full;
 }
 
 function initScrollTopButton() {
@@ -362,3 +373,4 @@ function renderWrongList(profile, classStats) {
 }
 
 document.addEventListener('DOMContentLoaded', init);
+window.addEventListener('resize', updateProfileHeaderCaption);

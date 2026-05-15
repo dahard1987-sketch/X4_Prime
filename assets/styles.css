@@ -380,7 +380,7 @@ a:hover { text-decoration: underline; }
   letter-spacing: -0.006em;
 }
 .exam-stat-row {
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
 }
 .exam-chart-card {
   background: rgba(255, 255, 255, 0.04);
@@ -522,6 +522,9 @@ a:hover { text-decoration: underline; }
   outline: none;
   border-color: var(--magenta);
   box-shadow: 0 0 0 4px rgba(185, 17, 112, 0.12);
+}
+.form-field input.secure-text-input:not(:placeholder-shown) {
+  -webkit-text-security: disc;
 }
 
 .form-action {
@@ -1108,6 +1111,23 @@ a:hover { text-decoration: underline; }
     width: 100%;
     justify-content: space-between;
     gap: 12px;
+  }
+  .admin-mode .sub-nav .sn-actions {
+    gap: 8px;
+  }
+  .admin-mode .test-caption {
+    flex: 0 0 auto;
+  }
+  .admin-mode .admin-switcher {
+    flex: 0 1 auto;
+    min-width: 0;
+  }
+  .admin-mode .admin-switcher label {
+    display: none;
+  }
+  .admin-mode .admin-switcher select {
+    min-width: 104px;
+    max-width: 132px;
   }
   .sub-nav .sn-actions .caption {
     color: var(--ink) !important;

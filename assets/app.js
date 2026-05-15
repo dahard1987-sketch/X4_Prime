@@ -79,7 +79,7 @@ const grade1Series = [
   { session: "'24.3",  pct: 3.79 },
   { session: "'24.6",  pct: 7.16 },
   { session: "'24.9",  pct: 10.72 },
-  { session: "'24.10", pct: 2.31, highlight: true, cut: 80 }
+  { session: "'24.10", pct: 2.31, highlight: true }
 ];
 
 
