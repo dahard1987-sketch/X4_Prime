@@ -139,6 +139,148 @@ function renderBarChart(container, data, options = {}) {
 }
 
 /* ----------------------------------------------------------------
+   Historical 1등급 percentage bar chart for the exam intro.
+     data: [{session, pct, note?, highlight?}]
+ ---------------------------------------------------------------- */
+function renderGrade1TrendChart(container, data, options = {}) {
+  const {
+    height = 320,
+    yMax = 12,
+    refLine = 4,
+  } = options;
+
+  if (!container) return;
+
+  const width = 1000;
+  const padTop = 28, padBottom = 66, padLeft = 54, padRight = 58;
+  const chartH = height - padTop - padBottom;
+  const chartW = width - padLeft - padRight;
+  const groupW = chartW / data.length;
+  const barW = Math.max(10, groupW * 0.56);
+  const yToPx = v => padTop + chartH - (v / yMax) * chartH;
+  const fmtTooltip = d => {
+    const cleaned = d.session.replace("'", '');
+    const [yy, mm] = cleaned.split('.');
+    const year = 2000 + parseInt(yy, 10);
+    const month = parseInt(mm, 10);
+    if (d.pct === null || d.pct === undefined) return `${year}년 ${month}월 · ${d.note || '성적 미산출'}`;
+    return `${year}년 ${month}월 · 1등급 ${d.pct.toFixed(2)}%`;
+  };
+
+  let grid = '';
+  for (let v = 0; v <= yMax; v += 2) {
+    const y = yToPx(v);
+    grid += svgEl('line', {
+      x1: padLeft, x2: padLeft + chartW, y1: y.toFixed(1), y2: y.toFixed(1),
+      stroke: 'rgba(255,255,255,0.10)', 'stroke-width': 1,
+    });
+    grid += svgEl('text', {
+      x: padLeft - 12, y: (y + 4).toFixed(1), 'text-anchor': 'end',
+      'font-size': 12, fill: 'rgba(255,255,255,0.62)',
+      'font-family': "var(--font-body)",
+    }, v);
+  }
+
+  const refY = yToPx(refLine);
+  let reference = svgEl('line', {
+    x1: padLeft, x2: padLeft + chartW, y1: refY.toFixed(1), y2: refY.toFixed(1),
+    stroke: 'rgba(255,255,255,0.35)', 'stroke-width': 1,
+    'stroke-dasharray': '5 5',
+  });
+  reference += svgEl('text', {
+    x: (padLeft + chartW - 4).toFixed(1), y: (refY - 7).toFixed(1),
+    'text-anchor': 'end', 'font-size': 12, fill: 'rgba(255,255,255,0.78)',
+    'font-weight': 600, 'font-family': "var(--font-body)",
+  }, '이론값 4%');
+  reference += svgEl('text', {
+    x: 12, y: 15,
+    'font-size': 12, fill: 'rgba(255,255,255,0.62)',
+    'font-family': "var(--font-body)",
+  }, '1등급 비율 (%)');
+
+  let bars = '';
+  data.forEach((d, i) => {
+    const value = d.pct || 0;
+    const x = padLeft + i * groupW + (groupW - barW) / 2;
+    const h = Math.max(d.pct ? (value / yMax) * chartH : 3, 3);
+    const y = d.pct ? yToPx(value) : padTop + chartH - h;
+    const fill = d.highlight ? '#f97316' : (d.pct ? '#475569' : 'transparent');
+    const stroke = d.highlight ? '#fb923c' : (d.pct ? 'transparent' : 'rgba(255,255,255,0.38)');
+    const labelFill = d.highlight ? '#fdba74' : 'rgba(255,255,255,0.62)';
+
+    bars += svgEl('rect', {
+      x: x.toFixed(1), y: y.toFixed(1), width: barW.toFixed(1), height: h.toFixed(1),
+      rx: 3, fill, stroke, 'stroke-width': d.pct ? 0 : 1.4,
+      'data-tooltip': fmtTooltip(d),
+      tabindex: 0,
+    });
+    if (d.highlight || d.pct === null) {
+      bars += svgEl('text', {
+        x: (x + barW / 2).toFixed(1), y: (y - 8).toFixed(1),
+        'text-anchor': 'middle',
+        'font-size': 12, 'font-weight': 700,
+        fill: d.highlight ? '#fdba74' : 'rgba(255,255,255,0.54)',
+        'font-family': "var(--font-body)",
+      }, d.pct === null ? '0' : d.pct.toFixed(2) + '%');
+    }
+    bars += svgEl('text', {
+      x: (x + barW / 2).toFixed(1), y: padTop + chartH + 24,
+      'text-anchor': 'end',
+      transform: `rotate(-35 ${(x + barW / 2).toFixed(1)} ${padTop + chartH + 24})`,
+      'font-size': 12,
+      fill: d.highlight ? '#fdba74' : labelFill,
+      'font-weight': d.highlight ? 700 : 500,
+      'font-family': "var(--font-body)",
+    }, d.session);
+    if (d.note) {
+      bars += svgEl('text', {
+        x: (x + barW / 2).toFixed(1), y: (padTop + chartH - 9).toFixed(1),
+        'text-anchor': 'middle',
+        'font-size': 12, fill: 'rgba(255,255,255,0.54)',
+        'font-family': "var(--font-body)",
+      }, '*');
+    }
+  });
+
+  const svg = svgEl('svg', {
+    viewBox: `0 0 ${width} ${height}`,
+    xmlns: 'http://www.w3.org/2000/svg',
+    style: 'width:100%; height:auto; display:block;',
+    role: 'img',
+    'aria-label': '1등급 비율 추이 2020년부터 2024년까지',
+  }, grid + reference + bars);
+
+  container.innerHTML = svg;
+
+  let tooltip = document.querySelector('.exam-chart-tooltip');
+  if (!tooltip) {
+    tooltip = document.createElement('div');
+    tooltip.className = 'exam-chart-tooltip';
+    document.body.appendChild(tooltip);
+  }
+  const moveTooltip = e => {
+    const target = e.currentTarget;
+    tooltip.textContent = target.getAttribute('data-tooltip');
+    tooltip.style.left = `${e.clientX}px`;
+    tooltip.style.top = `${e.clientY - 12}px`;
+    tooltip.classList.add('show');
+  };
+  container.querySelectorAll('[data-tooltip]').forEach(el => {
+    el.addEventListener('mousemove', moveTooltip);
+    el.addEventListener('mouseenter', moveTooltip);
+    el.addEventListener('focus', e => {
+      const rect = e.currentTarget.getBoundingClientRect();
+      tooltip.textContent = e.currentTarget.getAttribute('data-tooltip');
+      tooltip.style.left = `${rect.left + rect.width / 2}px`;
+      tooltip.style.top = `${rect.top - 8}px`;
+      tooltip.classList.add('show');
+    });
+    el.addEventListener('mouseleave', () => tooltip.classList.remove('show'));
+    el.addEventListener('blur', () => tooltip.classList.remove('show'));
+  });
+}
+
+/* ----------------------------------------------------------------
    Multi-line chart — used for trends across rounds.
      series: [{ name, color, data: [{x, y}] }]
      options: { xLabels, yMin, yMax, height, yFormat, refLine }

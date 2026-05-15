@@ -365,6 +365,53 @@ a:hover { text-decoration: underline; }
   font-size: 13px;
   color: var(--ink-mute);
 }
+.tile-dark .stat .stat-foot { color: var(--on-dark-faint); }
+.stat .stat-value.danger { color: #ef4444; }
+
+.exam-intro-header {
+  max-width: 760px;
+}
+.exam-intro-lede {
+  max-width: 640px;
+  margin-top: var(--space-5);
+  color: var(--on-dark-mute);
+  font-size: 19px;
+  line-height: 1.6;
+  letter-spacing: -0.006em;
+}
+.exam-stat-row {
+  grid-template-columns: repeat(3, 1fr);
+}
+.exam-chart-card {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: var(--hairline-dark);
+  color: var(--on-dark);
+}
+.tile-dark .chart-card.exam-chart-card { background: rgba(255, 255, 255, 0.04); }
+.exam-chart-card .chart-title { color: var(--on-dark); }
+.chart-caption {
+  margin-top: var(--space-4);
+  color: var(--on-dark-faint);
+  font-size: 12px;
+  line-height: 1.5;
+}
+.exam-chart-tooltip {
+  position: fixed;
+  z-index: 200;
+  pointer-events: none;
+  opacity: 0;
+  transform: translate(-50%, -110%);
+  background: rgba(0, 0, 0, 0.82);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: var(--r-sm);
+  padding: 7px 10px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: opacity 0.12s ease;
+}
+.exam-chart-tooltip.show { opacity: 1; }
 
 /* ============================================================
    Charts — SVG
@@ -1089,6 +1136,12 @@ a:hover { text-decoration: underline; }
   .stat .stat-value {
     font-size: 48px;
   }
+  .exam-stat-row {
+    grid-template-columns: 1fr;
+  }
+  .exam-intro-lede {
+    font-size: 17px;
+  }
 
   .chart-card {
     padding: 20px 14px;
@@ -1114,6 +1167,7 @@ a:hover { text-decoration: underline; }
   }
   #chart-national svg,
   #chart-grades svg,
+  #chart-grade1-trend svg,
   #chart-class-trend svg,
   #chart-trend svg {
     width: 1120px !important;

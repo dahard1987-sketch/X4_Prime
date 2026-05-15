@@ -59,6 +59,29 @@ const DEMO_PROFILE = {
   ],
 };
 
+const grade1Series = [
+  { session: "'20.3",  pct: null, note: "성적 미산출" },
+  { session: "'20.6",  pct: 7.63 },
+  { session: "'20.9",  pct: 6.00 },
+  { session: "'20.11", pct: 8.32 },
+  { session: "'21.3",  pct: 5.06 },
+  { session: "'21.6",  pct: 10.11 },
+  { session: "'21.9",  pct: 8.19 },
+  { session: "'21.11", pct: 7.76 },
+  { session: "'22.3",  pct: 4.38 },
+  { session: "'22.6",  pct: 7.49 },
+  { session: "'22.9",  pct: 9.43 },
+  { session: "'22.11", pct: 3.71 },
+  { session: "'23.3",  pct: 5.64 },
+  { session: "'23.6",  pct: 3.95 },
+  { session: "'23.9",  pct: 5.18 },
+  { session: "'23.11", pct: 5.84 },
+  { session: "'24.3",  pct: 3.79 },
+  { session: "'24.6",  pct: 7.16 },
+  { session: "'24.9",  pct: 10.72 },
+  { session: "'24.10", pct: 2.31, highlight: true, cut: 80 }
+];
+
 
 function showDataLoadError(message) {
   ['kpi-mean', 'kpi-range', 'kpi-reading', 'kpi-listening'].forEach(id => {
@@ -69,6 +92,15 @@ function showDataLoadError(message) {
   if (hard) {
     hard.innerHTML = `<div class="chart-card"><div class="chart-title">데이터를 불러오지 못했습니다</div><p style="margin-top:12px; color:var(--ink-soft); line-height:1.7;">${message}</p></div>`;
   }
+}
+
+function renderExamIntro() {
+  const isCompact = window.matchMedia && window.matchMedia('(max-width: 640px)').matches;
+  renderGrade1TrendChart(
+    document.getElementById('chart-grade1-trend'),
+    grade1Series,
+    { height: isCompact ? 260 : 320, yMax: 12, refLine: 4 }
+  );
 }
 
 async function bootstrap() {
@@ -375,5 +407,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const el = document.getElementById(id);
     if (el) el.addEventListener('keypress', e => { if (e.key === 'Enter') handleLogin(); });
   });
+  renderExamIntro();
+  window.addEventListener('resize', renderExamIntro);
   bootstrap();
 });
