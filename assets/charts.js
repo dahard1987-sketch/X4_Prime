@@ -183,27 +183,28 @@ function renderGrade1TrendChart(container, data, options = {}) {
   }
 
   const refY = yToPx(refLine);
-  let reference = svgEl('line', {
+  let referenceLine = svgEl('line', {
     x1: padLeft, x2: padLeft + chartW, y1: refY.toFixed(1), y2: refY.toFixed(1),
     stroke: 'rgba(255,255,255,0.35)', 'stroke-width': 1,
     'stroke-dasharray': '5 5',
   });
-  reference += svgEl('text', {
+  let referenceLabel = '';
+  referenceLabel += svgEl('text', {
     x: (padLeft + chartW - 4).toFixed(1), y: (refY - 7).toFixed(1),
     'text-anchor': 'end', 'font-size': 12, fill: 'rgba(255,255,255,0.78)',
     'font-weight': 600, 'font-family': "var(--font-body)",
   }, '이론값 4%');
-  reference += svgEl('text', {
+  referenceLabel += svgEl('text', {
     x: 12, y: 15,
     'font-size': 12, fill: 'rgba(255,255,255,0.62)',
     'font-family': "var(--font-body)",
   }, '1등급 비율 (%)');
 
   let averageLine = '';
+  let averageLabel = '';
   if (average !== null && average !== undefined) {
     const avgY = yToPx(average);
     const avgLabel = `역대 1등급 평균 ${average.toFixed(2)}%*`;
-    const avgLabelW = avgLabel.length * 7.2 + 16;
     const avgLabelX = padLeft + chartW - 4;
     const avgLabelY = avgY - 7;
     averageLine += svgEl('line', {
@@ -211,13 +212,7 @@ function renderGrade1TrendChart(container, data, options = {}) {
       stroke: '#38bdf8', 'stroke-width': 1.2,
       'stroke-dasharray': '6 4',
     });
-    averageLine += svgEl('rect', {
-      x: (avgLabelX - avgLabelW).toFixed(1), y: (avgLabelY - 15).toFixed(1),
-      width: avgLabelW.toFixed(1), height: 20,
-      rx: 4, fill: 'rgba(26,26,28,0.88)',
-      stroke: 'rgba(56,189,248,0.28)', 'stroke-width': 1,
-    });
-    averageLine += svgEl('text', {
+    averageLabel += svgEl('text', {
       x: avgLabelX.toFixed(1), y: avgLabelY.toFixed(1),
       'text-anchor': 'end', 'font-size': 12, fill: '#7dd3fc',
       'font-weight': 700, 'font-family': "var(--font-body)",
@@ -274,7 +269,7 @@ function renderGrade1TrendChart(container, data, options = {}) {
     style: 'width:100%; height:auto; display:block;',
     role: 'img',
     'aria-label': '1등급 비율 추이 2016년부터 2026년까지',
-  }, grid + reference + bars + averageLine);
+  }, grid + bars + referenceLine + averageLine + referenceLabel + averageLabel);
 
   container.innerHTML = svg;
 
