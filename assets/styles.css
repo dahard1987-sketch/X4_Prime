@@ -371,6 +371,11 @@ a:hover { text-decoration: underline; }
 .exam-intro-header {
   max-width: 760px;
 }
+.exam-title {
+  font-family: var(--font-body);
+  font-weight: 500;
+  letter-spacing: 0;
+}
 .exam-intro-lede {
   max-width: 640px;
   margin-top: var(--space-5);
@@ -395,6 +400,9 @@ a:hover { text-decoration: underline; }
   font-size: 12px;
   line-height: 1.5;
 }
+.chart-caption.average-note {
+  color: #7dd3fc;
+}
 .exam-chart-tooltip {
   position: fixed;
   z-index: 200;
@@ -412,6 +420,13 @@ a:hover { text-decoration: underline; }
   transition: opacity 0.12s ease;
 }
 .exam-chart-tooltip.show { opacity: 1; }
+.stat .stat-value.exam-stat-value {
+  font-family: var(--font-body);
+  font-size: 44px;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+.stat .stat-foot.danger { color: #ef4444; }
 
 /* ============================================================
    Charts — SVG
