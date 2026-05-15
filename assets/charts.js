@@ -147,6 +147,7 @@ function renderGrade1TrendChart(container, data, options = {}) {
     height = 320,
     yMax = 12,
     refLine = 4,
+    average = null,
   } = options;
 
   if (!container) return;
@@ -198,6 +199,21 @@ function renderGrade1TrendChart(container, data, options = {}) {
     'font-family': "var(--font-body)",
   }, '1등급 비율 (%)');
 
+  let averageLine = '';
+  if (average !== null && average !== undefined) {
+    const avgY = yToPx(average);
+    averageLine += svgEl('line', {
+      x1: padLeft, x2: padLeft + chartW, y1: avgY.toFixed(1), y2: avgY.toFixed(1),
+      stroke: '#38bdf8', 'stroke-width': 1.2,
+      'stroke-dasharray': '6 4',
+    });
+    averageLine += svgEl('text', {
+      x: (padLeft + chartW - 4).toFixed(1), y: (avgY - 7).toFixed(1),
+      'text-anchor': 'end', 'font-size': 12, fill: '#7dd3fc',
+      'font-weight': 700, 'font-family': "var(--font-body)",
+    }, `역대 1등급 평균 ${average.toFixed(2)}%*`);
+  }
+
   let bars = '';
   data.forEach((d, i) => {
     const value = d.pct || 0;
@@ -247,8 +263,8 @@ function renderGrade1TrendChart(container, data, options = {}) {
     xmlns: 'http://www.w3.org/2000/svg',
     style: 'width:100%; height:auto; display:block;',
     role: 'img',
-    'aria-label': '1등급 비율 추이 2020년부터 2024년까지',
-  }, grid + reference + bars);
+    'aria-label': '1등급 비율 추이 2016년부터 2026년까지',
+  }, grid + reference + averageLine + bars);
 
   container.innerHTML = svg;
 

@@ -60,6 +60,22 @@ const DEMO_PROFILE = {
 };
 
 const grade1Series = [
+  { session: "'16.3",  pct: 12.89 },
+  { session: "'16.6",  pct: 5.36 },
+  { session: "'16.9",  pct: 4.49 },
+  { session: "'16.11", pct: 5.53 },
+  { session: "'17.3",  pct: 10.66 },
+  { session: "'17.6",  pct: 7.34 },
+  { session: "'17.9",  pct: 8.42 },
+  { session: "'17.11", pct: 6.98 },
+  { session: "'18.3",  pct: 6.08 },
+  { session: "'18.6",  pct: 5.78 },
+  { session: "'18.9",  pct: 8.36 },
+  { session: "'18.11", pct: 3.03 },
+  { session: "'19.3",  pct: 6.72 },
+  { session: "'19.6",  pct: 5.27 },
+  { session: "'19.9",  pct: 5.40 },
+  { session: "'19.11", pct: 11.68 },
   { session: "'20.3",  pct: null, note: "성적 미산출" },
   { session: "'20.6",  pct: 7.63 },
   { session: "'20.9",  pct: 6.00 },
@@ -79,7 +95,12 @@ const grade1Series = [
   { session: "'24.3",  pct: 3.79 },
   { session: "'24.6",  pct: 7.16 },
   { session: "'24.9",  pct: 10.72 },
-  { session: "'24.10", pct: 2.31, highlight: true }
+  { session: "'24.10", pct: 2.31, highlight: true },
+  { session: "'25.3",  pct: 4.57 },
+  { session: "'25.6",  pct: 7.81 },
+  { session: "'25.9",  pct: 6.01 },
+  { session: "'25.10", pct: 6.78 },
+  { session: "'26.3",  pct: 3.48 }
 ];
 
 
@@ -96,10 +117,12 @@ function showDataLoadError(message) {
 
 function renderExamIntro() {
   const isCompact = window.matchMedia && window.matchMedia('(max-width: 640px)').matches;
+  const validGrade1 = grade1Series.filter(d => d.pct !== null && d.pct !== undefined);
+  const historicalAverage = validGrade1.reduce((sum, d) => sum + d.pct, 0) / validGrade1.length;
   renderGrade1TrendChart(
     document.getElementById('chart-grade1-trend'),
     grade1Series,
-    { height: isCompact ? 260 : 320, yMax: 12, refLine: 4 }
+    { height: isCompact ? 260 : 320, yMax: 14, refLine: 4, average: historicalAverage }
   );
 }
 
