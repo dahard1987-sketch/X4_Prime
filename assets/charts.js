@@ -274,7 +274,7 @@ function renderGrade1TrendChart(container, data, options = {}) {
     style: 'width:100%; height:auto; display:block;',
     role: 'img',
     'aria-label': '1등급 비율 추이 2016년부터 2026년까지',
-  }, grid + reference + averageLine + bars);
+  }, grid + reference + bars + averageLine);
 
   container.innerHTML = svg;
 
