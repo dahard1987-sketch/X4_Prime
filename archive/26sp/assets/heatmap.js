@@ -1,8 +1,3 @@
-const CIRCLED_NUMS = ['①', '②', '③', '④', '⑤'];
-function circleNum(n) {
-  return CIRCLED_NUMS[n - 1] || n;
-}
-
 function heatPct(value) {
   return value === null || value === undefined ? '-' : `${Math.round(value * 100)}%`;
 }
@@ -15,27 +10,12 @@ function heatClass(value) {
   return 'hm-danger';
 }
 
-/* Shared round/session card used by the 고1·고2 progress grids on both
- * index.html and profile.html - colored by accuracy so strong/weak rounds
- * are visible at a glance. */
-function renderAccCell(label, acc, detailHtml, extraClass) {
-  const cls = 'round-cell ' + heatClass(acc) + (extraClass ? ' ' + extraClass : '');
-  const valueHtml = acc === null || acc === undefined
-    ? '—'
-    : `${(acc * 100).toFixed(0)}<span style="font-size:14px; color:var(--ink-mute);">%</span>`;
-  return `<div class="${cls}">
-    <div class="rc-label">${label}</div>
-    <div class="rc-value">${valueHtml}</div>
-    <div class="rc-detail">${detailHtml || ''}</div>
-  </div>`;
-}
-
 function displayType(type) {
   return type === '함의' ? '함의 추론' : type;
 }
 
 function roundHeader(round) {
-  if (round === 'Term Test') return '<span>메인 시험</span><small>26.6 고2 학평</small>';
+  if (round === 'Term Test') return '<span>Term Test</span><small>\'24 고2 학평</small>';
   return round;
 }
 
@@ -98,7 +78,8 @@ function renderClassReadingHeatmap(target, heatmap) {
             return `
               <tr class="${meta.hard ? 'hm-hard-row' : ''}">
                 <th class="hm-q hm-sticky-col">
-                  <span>${meta.hard ? '*' : ''}${q}</span>
+                  <span>${q}</span>
+                  ${meta.hard ? '<small>(고난도)</small>' : ''}
                 </th>
                 ${isGroupStart ? `<td class="hm-type${weakTypes.has(meta.area) ? ' weak' : ''}" rowspan="${typeGroupSpan(heatmap, index)}"><strong>${displayType(meta.area)}</strong></td>` : ''}
                 ${heatmap.rounds.map(r => {
@@ -127,62 +108,6 @@ function studentCellClass(value, typeStats) {
 
 function isMissingRound(student, round) {
   return Array.isArray(student.missingRounds) && student.missingRounds.includes(round);
-}
-
-/* ----------------------------------------------------------------
- * Type trend — grade-agnostic accuracy-by-type across every session
- * (mini + go2 rounds paired by source file, 1-10, plus the main exam
- * as session 11). Independent of the per-question go2 heatmap above.
- * ---------------------------------------------------------------- */
-function renderTypeSummaryChips(cumulative) {
-  const entries = Object.entries(cumulative)
-    .filter(([, v]) => v.total > 0)
-    .sort((a, b) => (a[1].accuracy ?? 1) - (b[1].accuracy ?? 1));
-  return entries.map(([type, v]) => `
-    <div class="hm-type-chip${v.accuracy !== null && v.accuracy < 0.65 ? ' weak' : ''}">
-      <span>${displayType(type)}</span>
-      <strong>${heatPct(v.accuracy)}</strong>
-      <small>${v.correct}/${v.total}</small>
-    </div>
-  `).join('');
-}
-
-function renderTypeTrend(target, typeTrend) {
-  if (!target || !typeTrend) return;
-  const { types, sessions, cumulative } = typeTrend;
-  const sortedTypes = [...types].sort((a, b) => (cumulative[a]?.accuracy ?? 1) - (cumulative[b]?.accuracy ?? 1));
-
-  target.innerHTML = `
-    <div class="hm-type-row">${renderTypeSummaryChips(cumulative)}</div>
-    <div class="hm-scroll">
-      <table class="hm-table tt-table">
-        <thead>
-          <tr>
-            <th class="hm-sticky-col">유형</th>
-            ${sessions.map(s => `<th class="${s.isMain ? 'tt-main-col' : ''}">${s.isMain ? '<span>메인</span><small>6월 학평</small>' : `<span>${s.session}</span>`}</th>`).join('')}
-            <th class="hm-total-col">누적 정답률</th>
-          </tr>
-        </thead>
-        <tbody>
-          ${sortedTypes.map(type => {
-            const cum = cumulative[type];
-            return `
-              <tr class="${cum.accuracy !== null && cum.accuracy < 0.65 ? 'hm-hard-row' : ''}">
-                <th class="hm-sticky-col hm-type"><strong>${displayType(type)}</strong></th>
-                ${sessions.map(s => {
-                  const cell = s.byType[type];
-                  const acc = cell ? cell.accuracy : null;
-                  const label = cell ? `${cell.correct}/${cell.total}` : '자료 없음';
-                  return `<td class="${s.isMain ? 'tt-main-col' : ''}"><span class="hm-cell ${heatClass(acc)}" title="${s.label} ${displayType(type)}: ${heatPct(acc)} (${label})">${heatPct(acc)}</span></td>`;
-                }).join('')}
-                <td class="hm-total-col"><span class="hm-rate ${heatClass(cum.accuracy)}">${heatPct(cum.accuracy)}</span></td>
-              </tr>
-            `;
-          }).join('')}
-        </tbody>
-      </table>
-    </div>
-  `;
 }
 
 function renderStudentReadingHeatmap(target, heatmap, studentName) {
@@ -215,7 +140,8 @@ function renderStudentReadingHeatmap(target, heatmap, studentName) {
             return `
               <tr class="${meta.hard ? 'hm-hard-row' : ''}">
                 <th class="hm-q hm-sticky-col">
-                  <span>${meta.hard ? '*' : ''}${q}</span>
+                  <span>${q}</span>
+                  ${meta.hard ? '<small>(고난도)</small>' : ''}
                 </th>
                 ${isGroupStart ? `<td class="hm-type${weakTypes.has(meta.area) ? ' weak' : ''}" rowspan="${typeGroupSpan(heatmap, index)}"><strong>${displayType(meta.area)}</strong></td>` : ''}
                 ${heatmap.rounds.map(r => {

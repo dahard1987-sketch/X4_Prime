@@ -1,0 +1,17 @@
+# This repo is public and served live via GitHub Pages.
+# Never commit raw/unencrypted student data or source exam files -
+# only the derived, encrypted, or already-public site files belong here.
+
+.DS_Store
+
+# Local-only build pipeline (raw_master.json / computed_stats.json contain
+# every student's individual per-question answers, unencrypted).
+/build/
+/local-only/
+
+# Raw master-sheet PDFs (per-student grading tables, unencrypted) and the
+# raw exam source files - already extracted into data/*.inline.js.
+/*.pdf
+/*.zip
+/*.mov
+/메인시험/

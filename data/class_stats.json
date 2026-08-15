@@ -1,541 +1,1636 @@
 {
-  "numStudents": 12,
-  "maxScore": 100,
-  "maxReading": 63,
-  "maxListening": 37,
-  "mean": 64.5,
-  "median": 64.0,
-  "min": 50,
-  "max": 84,
-  "stdev": 8.58,
-  "readingMean": 28.67,
-  "listeningMean": 35.83,
-  "scoreDistribution": [
-    84,
-    73,
-    71,
-    67,
-    67,
-    65,
-    63,
-    62,
-    58,
-    58,
-    56,
-    50
-  ],
+  "numStudents": 11,
+  "title": "26여름학기 X4 프라임 리포트",
+  "mainExam": {
+    "label": "2026학년도 6월 고2 전국연합학력평가",
+    "maxScore": 100,
+    "maxListening": 37,
+    "maxReading": 63,
+    "mean": 74.73,
+    "median": 73,
+    "min": 63,
+    "max": 90,
+    "stdev": 7.83,
+    "readingMean": 39.55,
+    "listeningMean": 35.18,
+    "scoreDistribution": [
+      90,
+      86,
+      81,
+      78,
+      73,
+      73,
+      72,
+      70,
+      68,
+      68,
+      63
+    ],
+    "classGradeCounts": {
+      "4": 3,
+      "3": 5,
+      "2": 2,
+      "1": 1
+    },
+    "questionStats": {
+      "1": {
+        "correctAnswer": 5,
+        "points": 2,
+        "type": "(듣기) 담화 목적",
+        "section": "listening",
+        "classCorrectCount": 11,
+        "classAccuracy": 1.0,
+        "answerDistribution": {
+          "5": 11
+        }
+      },
+      "2": {
+        "correctAnswer": 3,
+        "points": 2,
+        "type": "(듣기) 의견 파악",
+        "section": "listening",
+        "classCorrectCount": 11,
+        "classAccuracy": 1.0,
+        "answerDistribution": {
+          "3": 11
+        }
+      },
+      "3": {
+        "correctAnswer": 1,
+        "points": 2,
+        "type": "(듣기) 요지 파악",
+        "section": "listening",
+        "classCorrectCount": 10,
+        "classAccuracy": 0.9091,
+        "answerDistribution": {
+          "1": 10,
+          "4": 1
+        }
+      },
+      "4": {
+        "correctAnswer": 3,
+        "points": 2,
+        "type": "(듣기) 그림 일치",
+        "section": "listening",
+        "classCorrectCount": 11,
+        "classAccuracy": 1.0,
+        "answerDistribution": {
+          "3": 11
+        }
+      },
+      "5": {
+        "correctAnswer": 4,
+        "points": 2,
+        "type": "(듣기) 할 일 파악",
+        "section": "listening",
+        "classCorrectCount": 11,
+        "classAccuracy": 1.0,
+        "answerDistribution": {
+          "4": 11
+        }
+      },
+      "6": {
+        "correctAnswer": 4,
+        "points": 2,
+        "type": "(듣기) 계산",
+        "section": "listening",
+        "classCorrectCount": 10,
+        "classAccuracy": 0.9091,
+        "answerDistribution": {
+          "4": 10,
+          "5": 1
+        }
+      },
+      "7": {
+        "correctAnswer": 5,
+        "points": 2,
+        "type": "(듣기) 이유 파악",
+        "section": "listening",
+        "classCorrectCount": 11,
+        "classAccuracy": 1.0,
+        "answerDistribution": {
+          "5": 11
+        }
+      },
+      "8": {
+        "correctAnswer": 3,
+        "points": 2,
+        "type": "(듣기) 언급 여부",
+        "section": "listening",
+        "classCorrectCount": 9,
+        "classAccuracy": 0.8182,
+        "answerDistribution": {
+          "3": 9,
+          "5": 1,
+          "4": 1
+        }
+      },
+      "9": {
+        "correctAnswer": 5,
+        "points": 2,
+        "type": "(듣기) 일치 파악",
+        "section": "listening",
+        "classCorrectCount": 10,
+        "classAccuracy": 0.9091,
+        "answerDistribution": {
+          "5": 10,
+          "4": 1
+        }
+      },
+      "10": {
+        "correctAnswer": 4,
+        "points": 2,
+        "type": "(듣기) 세부 정보",
+        "section": "listening",
+        "classCorrectCount": 11,
+        "classAccuracy": 1.0,
+        "answerDistribution": {
+          "4": 11
+        }
+      },
+      "11": {
+        "correctAnswer": 5,
+        "points": 2,
+        "type": "(듣기) 응답 추론",
+        "section": "listening",
+        "classCorrectCount": 9,
+        "classAccuracy": 0.8182,
+        "answerDistribution": {
+          "5": 9,
+          "1": 1,
+          "4": 1
+        }
+      },
+      "12": {
+        "correctAnswer": 1,
+        "points": 3,
+        "type": "(듣기) 응답 추론",
+        "section": "listening",
+        "classCorrectCount": 10,
+        "classAccuracy": 0.9091,
+        "answerDistribution": {
+          "1": 10,
+          "3": 1
+        }
+      },
+      "13": {
+        "correctAnswer": 1,
+        "points": 3,
+        "type": "(듣기) 응답 추론",
+        "section": "listening",
+        "classCorrectCount": 11,
+        "classAccuracy": 1.0,
+        "answerDistribution": {
+          "1": 11
+        }
+      },
+      "14": {
+        "correctAnswer": 2,
+        "points": 2,
+        "type": "(듣기) 응답 추론",
+        "section": "listening",
+        "classCorrectCount": 11,
+        "classAccuracy": 1.0,
+        "answerDistribution": {
+          "2": 11
+        }
+      },
+      "15": {
+        "correctAnswer": 2,
+        "points": 3,
+        "type": "(듣기) 담화 응답",
+        "section": "listening",
+        "classCorrectCount": 10,
+        "classAccuracy": 0.9091,
+        "answerDistribution": {
+          "2": 10,
+          "1": 1
+        }
+      },
+      "16": {
+        "correctAnswer": 1,
+        "points": 2,
+        "type": "(듣기) 복합 듣기 - 주제",
+        "section": "listening",
+        "classCorrectCount": 11,
+        "classAccuracy": 1.0,
+        "answerDistribution": {
+          "1": 11
+        }
+      },
+      "17": {
+        "correctAnswer": 3,
+        "points": 2,
+        "type": "(듣기) 복합 듣기 - 언급 여부",
+        "section": "listening",
+        "classCorrectCount": 11,
+        "classAccuracy": 1.0,
+        "answerDistribution": {
+          "3": 11
+        }
+      },
+      "18": {
+        "correctAnswer": 4,
+        "points": 2,
+        "type": "대의 추론",
+        "section": "reading",
+        "classCorrectCount": 11,
+        "classAccuracy": 1.0,
+        "answerDistribution": {
+          "4": 11
+        }
+      },
+      "19": {
+        "correctAnswer": 1,
+        "points": 2,
+        "type": "심경 추론",
+        "section": "reading",
+        "classCorrectCount": 11,
+        "classAccuracy": 1.0,
+        "answerDistribution": {
+          "1": 11
+        }
+      },
+      "20": {
+        "correctAnswer": 3,
+        "points": 2,
+        "type": "대의 추론",
+        "section": "reading",
+        "classCorrectCount": 10,
+        "classAccuracy": 0.9091,
+        "answerDistribution": {
+          "3": 10,
+          "4": 1
+        }
+      },
+      "21": {
+        "correctAnswer": 1,
+        "points": 3,
+        "type": "함의 추론*",
+        "section": "reading",
+        "classCorrectCount": 4,
+        "classAccuracy": 0.3636,
+        "answerDistribution": {
+          "5": 4,
+          "1": 4,
+          "2": 1,
+          "4": 2
+        }
+      },
+      "22": {
+        "correctAnswer": 2,
+        "points": 2,
+        "type": "대의 추론",
+        "section": "reading",
+        "classCorrectCount": 11,
+        "classAccuracy": 1.0,
+        "answerDistribution": {
+          "2": 11
+        }
+      },
+      "23": {
+        "correctAnswer": 3,
+        "points": 2,
+        "type": "대의 추론",
+        "section": "reading",
+        "classCorrectCount": 10,
+        "classAccuracy": 0.9091,
+        "answerDistribution": {
+          "3": 10,
+          "2": 1
+        }
+      },
+      "24": {
+        "correctAnswer": 4,
+        "points": 2,
+        "type": "대의 추론",
+        "section": "reading",
+        "classCorrectCount": 11,
+        "classAccuracy": 1.0,
+        "answerDistribution": {
+          "4": 11
+        }
+      },
+      "25": {
+        "correctAnswer": 4,
+        "points": 2,
+        "type": "내용 일치",
+        "section": "reading",
+        "classCorrectCount": 11,
+        "classAccuracy": 1.0,
+        "answerDistribution": {
+          "4": 11
+        }
+      },
+      "26": {
+        "correctAnswer": 3,
+        "points": 2,
+        "type": "내용 일치",
+        "section": "reading",
+        "classCorrectCount": 11,
+        "classAccuracy": 1.0,
+        "answerDistribution": {
+          "3": 11
+        }
+      },
+      "27": {
+        "correctAnswer": 4,
+        "points": 2,
+        "type": "내용 일치",
+        "section": "reading",
+        "classCorrectCount": 10,
+        "classAccuracy": 0.9091,
+        "answerDistribution": {
+          "4": 10,
+          "5": 1
+        }
+      },
+      "28": {
+        "correctAnswer": 3,
+        "points": 2,
+        "type": "내용 일치",
+        "section": "reading",
+        "classCorrectCount": 11,
+        "classAccuracy": 1.0,
+        "answerDistribution": {
+          "3": 11
+        }
+      },
+      "29": {
+        "correctAnswer": 2,
+        "points": 3,
+        "type": "어법*",
+        "section": "reading",
+        "classCorrectCount": 0,
+        "classAccuracy": 0.0,
+        "answerDistribution": {
+          "4": 8,
+          "1": 2,
+          "5": 1
+        }
+      },
+      "30": {
+        "correctAnswer": 3,
+        "points": 2,
+        "type": "어법*",
+        "section": "reading",
+        "classCorrectCount": 4,
+        "classAccuracy": 0.3636,
+        "answerDistribution": {
+          "5": 1,
+          "4": 5,
+          "3": 4,
+          "2": 1
+        }
+      },
+      "31": {
+        "correctAnswer": 1,
+        "points": 2,
+        "type": "빈칸 추론*",
+        "section": "reading",
+        "classCorrectCount": 5,
+        "classAccuracy": 0.4545,
+        "answerDistribution": {
+          "1": 5,
+          "4": 4,
+          "2": 1,
+          "5": 1
+        }
+      },
+      "32": {
+        "correctAnswer": 2,
+        "points": 2,
+        "type": "빈칸 추론*",
+        "section": "reading",
+        "classCorrectCount": 2,
+        "classAccuracy": 0.1818,
+        "answerDistribution": {
+          "4": 3,
+          "1": 3,
+          "2": 2,
+          "3": 2,
+          "5": 1
+        }
+      },
+      "33": {
+        "correctAnswer": 2,
+        "points": 3,
+        "type": "빈칸 추론*",
+        "section": "reading",
+        "classCorrectCount": 4,
+        "classAccuracy": 0.3636,
+        "answerDistribution": {
+          "1": 3,
+          "3": 4,
+          "2": 4
+        }
+      },
+      "34": {
+        "correctAnswer": 5,
+        "points": 3,
+        "type": "빈칸 추론*",
+        "section": "reading",
+        "classCorrectCount": 5,
+        "classAccuracy": 0.4545,
+        "answerDistribution": {
+          "4": 1,
+          "1": 3,
+          "5": 5,
+          "3": 2
+        }
+      },
+      "35": {
+        "correctAnswer": 3,
+        "points": 2,
+        "type": "흐름 무관",
+        "section": "reading",
+        "classCorrectCount": 8,
+        "classAccuracy": 0.7273,
+        "answerDistribution": {
+          "3": 8,
+          "1": 1,
+          "4": 2
+        }
+      },
+      "36": {
+        "correctAnswer": 2,
+        "points": 3,
+        "type": "순서 추론*",
+        "section": "reading",
+        "classCorrectCount": 4,
+        "classAccuracy": 0.3636,
+        "answerDistribution": {
+          "3": 5,
+          "2": 4,
+          "5": 1,
+          "1": 1
+        }
+      },
+      "37": {
+        "correctAnswer": 5,
+        "points": 2,
+        "type": "순서 추론*",
+        "section": "reading",
+        "classCorrectCount": 6,
+        "classAccuracy": 0.5455,
+        "answerDistribution": {
+          "4": 4,
+          "2": 1,
+          "5": 6
+        }
+      },
+      "38": {
+        "correctAnswer": 5,
+        "points": 2,
+        "type": "문장 삽입*",
+        "section": "reading",
+        "classCorrectCount": 2,
+        "classAccuracy": 0.1818,
+        "answerDistribution": {
+          "4": 5,
+          "3": 4,
+          "5": 2
+        }
+      },
+      "39": {
+        "correctAnswer": 2,
+        "points": 3,
+        "type": "문장 삽입*",
+        "section": "reading",
+        "classCorrectCount": 4,
+        "classAccuracy": 0.3636,
+        "answerDistribution": {
+          "2": 4,
+          "3": 2,
+          "4": 4,
+          "5": 1
+        }
+      },
+      "40": {
+        "correctAnswer": 4,
+        "points": 3,
+        "type": "요약*",
+        "section": "reading",
+        "classCorrectCount": 4,
+        "classAccuracy": 0.3636,
+        "answerDistribution": {
+          "1": 2,
+          "4": 4,
+          "3": 4,
+          "2": 1
+        }
+      },
+      "41": {
+        "correctAnswer": 1,
+        "points": 2,
+        "type": "장문 독해",
+        "section": "reading",
+        "classCorrectCount": 8,
+        "classAccuracy": 0.7273,
+        "answerDistribution": {
+          "4": 1,
+          "1": 8,
+          "2": 1,
+          "5": 1
+        }
+      },
+      "42": {
+        "correctAnswer": 5,
+        "points": 2,
+        "type": "장문 독해*",
+        "section": "reading",
+        "classCorrectCount": 6,
+        "classAccuracy": 0.5455,
+        "answerDistribution": {
+          "4": 3,
+          "5": 6,
+          "2": 2
+        }
+      },
+      "43": {
+        "correctAnswer": 4,
+        "points": 2,
+        "type": "장문 독해",
+        "section": "reading",
+        "classCorrectCount": 11,
+        "classAccuracy": 1.0,
+        "answerDistribution": {
+          "4": 11
+        }
+      },
+      "44": {
+        "correctAnswer": 5,
+        "points": 2,
+        "type": "장문 독해",
+        "section": "reading",
+        "classCorrectCount": 11,
+        "classAccuracy": 1.0,
+        "answerDistribution": {
+          "5": 11
+        }
+      },
+      "45": {
+        "correctAnswer": 5,
+        "points": 2,
+        "type": "장문 독해",
+        "section": "reading",
+        "classCorrectCount": 10,
+        "classAccuracy": 0.9091,
+        "answerDistribution": {
+          "4": 1,
+          "5": 10
+        }
+      }
+    }
+  },
   "high2": {
+    "examLabel": "2026학년도 6월 고2 전국연합학력평가",
+    "sourceUrl": "https://www.hanibnews.com/news/articleView.html?idxno=428",
     "distribution": [
       {
         "grade": 1,
         "minScore": 90,
-        "count": 7203,
-        "pct": 2.31
+        "pct": 7.48
       },
       {
         "grade": 2,
         "minScore": 80,
-        "count": 21753,
-        "pct": 6.99
+        "pct": 10.61
       },
       {
         "grade": 3,
         "minScore": 70,
-        "count": 45491,
-        "pct": 14.62
+        "pct": 15.03
       },
       {
         "grade": 4,
         "minScore": 60,
-        "count": 58589,
-        "pct": 18.83
+        "pct": 16.23
       },
       {
         "grade": 5,
         "minScore": 50,
-        "count": 47864,
-        "pct": 15.38
+        "pct": 14.55
       },
       {
         "grade": 6,
         "minScore": 40,
-        "count": 38472,
-        "pct": 12.36
+        "pct": 11.92
       },
       {
         "grade": 7,
         "minScore": 30,
-        "count": 34028,
-        "pct": 10.93
+        "pct": 9.68
       },
       {
         "grade": 8,
         "minScore": 20,
-        "count": 33855,
-        "pct": 10.88
+        "pct": 10.24
       },
       {
         "grade": 9,
         "minScore": 0,
-        "count": 23939,
-        "pct": 7.69
+        "pct": 4.26
       }
-    ],
-    "totalStudents": 311194
+    ]
   },
-  "classGradeCounts": {
-    "2": 1,
-    "3": 2,
-    "4": 5,
-    "5": 4
-  },
-  "questionStats": {
-    "18": {
-      "correctAnswer": 4,
-      "points": 2,
-      "classCorrectCount": 9,
-      "classAccuracy": 0.75,
-      "answerDistribution": {
-        "1": 1,
-        "2": 1,
-        "3": 0,
-        "4": 9,
-        "5": 1
-      }
-    },
-    "19": {
-      "correctAnswer": 1,
-      "points": 2,
-      "classCorrectCount": 12,
-      "classAccuracy": 1.0,
-      "answerDistribution": {
-        "1": 12,
-        "2": 0,
-        "3": 0,
-        "4": 0,
-        "5": 0
-      }
-    },
-    "20": {
-      "correctAnswer": 1,
-      "points": 2,
-      "classCorrectCount": 7,
-      "classAccuracy": 0.583,
-      "answerDistribution": {
-        "1": 7,
-        "2": 3,
-        "3": 1,
-        "4": 0,
-        "5": 1
-      }
-    },
-    "21": {
-      "correctAnswer": 4,
-      "points": 2,
-      "classCorrectCount": 4,
-      "classAccuracy": 0.333,
-      "answerDistribution": {
-        "1": 0,
-        "2": 2,
-        "3": 1,
-        "4": 4,
-        "5": 5
-      }
-    },
-    "22": {
-      "correctAnswer": 4,
-      "points": 2,
-      "classCorrectCount": 4,
-      "classAccuracy": 0.333,
-      "answerDistribution": {
-        "1": 4,
-        "2": 2,
-        "3": 2,
-        "4": 4,
-        "5": 0
-      }
-    },
-    "23": {
-      "correctAnswer": 3,
-      "points": 2,
-      "classCorrectCount": 7,
-      "classAccuracy": 0.583,
-      "answerDistribution": {
-        "1": 0,
-        "2": 1,
-        "3": 7,
-        "4": 3,
-        "5": 1
-      }
-    },
-    "24": {
-      "correctAnswer": 3,
-      "points": 2,
-      "classCorrectCount": 3,
-      "classAccuracy": 0.25,
-      "answerDistribution": {
-        "1": 4,
-        "2": 4,
-        "3": 3,
-        "4": 1,
-        "5": 0
-      }
-    },
-    "25": {
-      "correctAnswer": 5,
-      "points": 2,
-      "classCorrectCount": 12,
-      "classAccuracy": 1.0,
-      "answerDistribution": {
-        "1": 0,
-        "2": 0,
-        "3": 0,
-        "4": 0,
-        "5": 12
-      }
-    },
-    "26": {
-      "correctAnswer": 3,
-      "points": 2,
-      "classCorrectCount": 11,
-      "classAccuracy": 0.917,
-      "answerDistribution": {
-        "1": 0,
-        "2": 1,
-        "3": 11,
-        "4": 0,
-        "5": 0
-      }
-    },
-    "27": {
-      "correctAnswer": 4,
-      "points": 2,
-      "classCorrectCount": 11,
-      "classAccuracy": 0.917,
-      "answerDistribution": {
-        "1": 0,
-        "2": 0,
-        "3": 0,
-        "4": 11,
-        "5": 1
-      }
-    },
-    "28": {
-      "correctAnswer": 2,
-      "points": 2,
-      "classCorrectCount": 11,
-      "classAccuracy": 0.917,
-      "answerDistribution": {
-        "1": 0,
-        "2": 11,
-        "3": 1,
-        "4": 0,
-        "5": 0
-      }
-    },
-    "29": {
-      "correctAnswer": 5,
-      "points": 2,
-      "classCorrectCount": 5,
-      "classAccuracy": 0.417,
-      "answerDistribution": {
-        "1": 0,
-        "2": 0,
-        "3": 1,
-        "4": 6,
-        "5": 5
-      }
-    },
-    "30": {
-      "correctAnswer": 4,
-      "points": 3,
-      "classCorrectCount": 4,
-      "classAccuracy": 0.333,
-      "answerDistribution": {
-        "1": 0,
-        "2": 3,
-        "3": 2,
-        "4": 4,
-        "5": 3
-      }
-    },
-    "31": {
-      "correctAnswer": 5,
-      "points": 2,
-      "classCorrectCount": 5,
-      "classAccuracy": 0.417,
-      "answerDistribution": {
-        "1": 1,
-        "2": 4,
-        "3": 1,
-        "4": 1,
-        "5": 5
-      }
-    },
-    "32": {
-      "correctAnswer": 1,
-      "points": 2,
-      "classCorrectCount": 2,
-      "classAccuracy": 0.167,
-      "answerDistribution": {
-        "1": 2,
-        "2": 2,
-        "3": 1,
-        "4": 5,
-        "5": 2
-      }
-    },
-    "33": {
-      "correctAnswer": 2,
-      "points": 3,
-      "classCorrectCount": 2,
-      "classAccuracy": 0.167,
-      "answerDistribution": {
-        "1": 3,
-        "2": 2,
-        "3": 3,
-        "4": 3,
-        "5": 1
-      }
-    },
-    "34": {
-      "correctAnswer": 4,
-      "points": 3,
-      "classCorrectCount": 5,
-      "classAccuracy": 0.417,
-      "answerDistribution": {
-        "1": 2,
-        "2": 5,
-        "3": 0,
-        "4": 5,
-        "5": 0
-      }
-    },
-    "35": {
-      "correctAnswer": 4,
-      "points": 2,
-      "classCorrectCount": 4,
-      "classAccuracy": 0.333,
-      "answerDistribution": {
-        "1": 1,
-        "2": 2,
-        "3": 4,
-        "4": 4,
-        "5": 1
-      }
-    },
-    "36": {
-      "correctAnswer": 2,
-      "points": 2,
-      "classCorrectCount": 0,
-      "classAccuracy": 0.0,
-      "answerDistribution": {
-        "1": 5,
-        "2": 0,
-        "3": 1,
-        "4": 3,
-        "5": 3
-      }
-    },
-    "37": {
-      "correctAnswer": 5,
-      "points": 3,
-      "classCorrectCount": 0,
-      "classAccuracy": 0.0,
-      "answerDistribution": {
-        "1": 4,
-        "2": 2,
-        "3": 5,
-        "4": 1,
-        "5": 0
-      }
-    },
-    "38": {
-      "correctAnswer": 3,
-      "points": 3,
-      "classCorrectCount": 5,
-      "classAccuracy": 0.417,
-      "answerDistribution": {
-        "1": 0,
-        "2": 1,
-        "3": 5,
-        "4": 3,
-        "5": 3
-      }
-    },
-    "39": {
-      "correctAnswer": 5,
-      "points": 2,
-      "classCorrectCount": 1,
-      "classAccuracy": 0.083,
-      "answerDistribution": {
-        "1": 1,
-        "2": 6,
-        "3": 0,
-        "4": 4,
-        "5": 1
-      }
-    },
-    "40": {
-      "correctAnswer": 1,
-      "points": 3,
-      "classCorrectCount": 0,
-      "classAccuracy": 0.0,
-      "answerDistribution": {
-        "1": 0,
-        "2": 6,
-        "3": 0,
-        "4": 2,
-        "5": 4
-      }
-    },
-    "41": {
-      "correctAnswer": 5,
-      "points": 2,
-      "classCorrectCount": 2,
-      "classAccuracy": 0.167,
-      "answerDistribution": {
-        "1": 1,
-        "2": 3,
-        "3": 0,
-        "4": 6,
-        "5": 2
-      }
-    },
-    "42": {
-      "correctAnswer": 4,
-      "points": 3,
-      "classCorrectCount": 6,
-      "classAccuracy": 0.5,
-      "answerDistribution": {
-        "1": 0,
-        "2": 0,
-        "3": 2,
-        "4": 6,
-        "5": 4
-      }
-    },
-    "43": {
-      "correctAnswer": 3,
-      "points": 2,
-      "classCorrectCount": 10,
-      "classAccuracy": 0.833,
-      "answerDistribution": {
-        "1": 1,
-        "2": 1,
-        "3": 10,
-        "4": 0,
-        "5": 0
-      }
-    },
-    "44": {
-      "correctAnswer": 3,
-      "points": 2,
-      "classCorrectCount": 10,
-      "classAccuracy": 0.833,
-      "answerDistribution": {
-        "1": 0,
-        "2": 0,
-        "3": 10,
-        "4": 0,
-        "5": 2
-      }
-    },
-    "45": {
-      "correctAnswer": 2,
-      "points": 2,
-      "classCorrectCount": 9,
-      "classAccuracy": 0.75,
-      "answerDistribution": {
-        "1": 0,
-        "2": 9,
-        "3": 1,
-        "4": 1,
-        "5": 1
-      }
-    }
-  },
-  "roundHistory": [
+  "gradeBands": [
     {
-      "round": "1회",
-      "roundNum": 1,
-      "classListeningAvg": 0.9705882352941176,
-      "classReadingAvg": 0.5178571428571428,
-      "numListeningContrib": 2,
-      "numReadingContrib": 2
+      "grade": 1,
+      "minScore": 90
     },
     {
-      "round": "2회",
-      "roundNum": 2,
-      "classListeningAvg": 0.9732620320855614,
-      "classReadingAvg": 0.7077922077922078,
-      "numListeningContrib": 11,
-      "numReadingContrib": 11
+      "grade": 2,
+      "minScore": 80
     },
     {
-      "round": "3회",
-      "roundNum": 3,
-      "classListeningAvg": 0.9572192513368983,
-      "classReadingAvg": 0.75,
-      "numListeningContrib": 11,
-      "numReadingContrib": 12
+      "grade": 3,
+      "minScore": 70
     },
     {
-      "round": "4회",
-      "roundNum": 4,
-      "classListeningAvg": 0.9803921568627452,
-      "classReadingAvg": 0.7410714285714285,
-      "numListeningContrib": 12,
-      "numReadingContrib": 12
+      "grade": 4,
+      "minScore": 60
     },
     {
-      "round": "5회",
-      "roundNum": 5,
-      "classListeningAvg": 1.0,
-      "classReadingAvg": 0.7564935064935064,
-      "numListeningContrib": 11,
-      "numReadingContrib": 11
+      "grade": 5,
+      "minScore": 50
     },
     {
-      "round": "6회",
-      "roundNum": 6,
-      "classListeningAvg": 0.8872549019607843,
-      "classReadingAvg": 0.7580467372134039,
-      "numListeningContrib": 12,
-      "numReadingContrib": 12
+      "grade": 6,
+      "minScore": 40
     },
     {
-      "round": "7회",
-      "roundNum": 7,
-      "classListeningAvg": 0.9950980392156863,
-      "classReadingAvg": 0.7857142857142857,
-      "numListeningContrib": 12,
-      "numReadingContrib": 12
+      "grade": 7,
+      "minScore": 30
     },
     {
-      "round": "8회",
-      "roundNum": 8,
-      "classListeningAvg": 0.9679144385026738,
-      "classReadingAvg": 0.7678571428571428,
-      "numListeningContrib": 11,
-      "numReadingContrib": 12
+      "grade": 8,
+      "minScore": 20
     },
     {
-      "round": "9회",
-      "roundNum": 9,
-      "classListeningAvg": 0.9823529411764707,
-      "classReadingAvg": 0.7954545454545454,
-      "numListeningContrib": 10,
-      "numReadingContrib": 11
-    },
-    {
-      "round": "10회",
-      "roundNum": 10,
-      "classListeningAvg": 0.979779411764706,
-      "classReadingAvg": 0.8125,
-      "numListeningContrib": 12,
-      "numReadingContrib": 12
+      "grade": 9,
+      "minScore": 0
     }
   ],
-  "mt2ClassReadingAvg": 0.4791666666666667
+  "grade1Mini": {
+    "rounds": [
+      {
+        "round": "2회",
+        "roundNum": 2,
+        "classAcc": 0.7045,
+        "numContrib": 11
+      },
+      {
+        "round": "3회",
+        "roundNum": 3,
+        "classAcc": 0.7652,
+        "numContrib": 11
+      },
+      {
+        "round": "4회",
+        "roundNum": 4,
+        "classAcc": 0.8106,
+        "numContrib": 11
+      },
+      {
+        "round": "5회",
+        "roundNum": 5,
+        "classAcc": 0.7333,
+        "numContrib": 10
+      },
+      {
+        "round": "6회",
+        "roundNum": 6,
+        "classAcc": 0.803,
+        "numContrib": 11
+      },
+      {
+        "round": "7회",
+        "roundNum": 7,
+        "classAcc": 0.803,
+        "numContrib": 11
+      },
+      {
+        "round": "8회",
+        "roundNum": 8,
+        "classAcc": 0.8636,
+        "numContrib": 11
+      },
+      {
+        "round": "9회",
+        "roundNum": 9,
+        "classAcc": 0.8636,
+        "numContrib": 11
+      },
+      {
+        "round": "10회",
+        "roundNum": 10,
+        "classAcc": 0.8864,
+        "numContrib": 11
+      },
+      {
+        "round": "11회",
+        "roundNum": 11,
+        "classAcc": 0.75,
+        "numContrib": 11
+      }
+    ]
+  },
+  "grade2Go2": {
+    "rounds": [
+      {
+        "round": "1회",
+        "roundNum": 1,
+        "classAcc": 0.7305,
+        "numContrib": 11
+      },
+      {
+        "round": "2회",
+        "roundNum": 2,
+        "classAcc": 0.7825,
+        "numContrib": 11
+      },
+      {
+        "round": "3회",
+        "roundNum": 3,
+        "classAcc": 0.7825,
+        "numContrib": 11
+      },
+      {
+        "round": "4회",
+        "roundNum": 4,
+        "classAcc": 0.7305,
+        "numContrib": 11
+      },
+      {
+        "round": "5회",
+        "roundNum": 5,
+        "classAcc": 0.7565,
+        "numContrib": 11
+      },
+      {
+        "round": "6회",
+        "roundNum": 6,
+        "classAcc": 0.7955,
+        "numContrib": 11
+      },
+      {
+        "round": "7회",
+        "roundNum": 7,
+        "classAcc": 0.7825,
+        "numContrib": 11
+      },
+      {
+        "round": "8회",
+        "roundNum": 8,
+        "classAcc": 0.8344,
+        "numContrib": 11
+      },
+      {
+        "round": "9회",
+        "roundNum": 9,
+        "classAcc": 0.8377,
+        "numContrib": 11
+      },
+      {
+        "round": "10회",
+        "roundNum": 10,
+        "classAcc": 0.7792,
+        "numContrib": 11
+      }
+    ]
+  },
+  "legacyGrade1Full": {
+    "roundHistory": [
+      {
+        "round": "1회",
+        "roundNum": 1,
+        "classListeningAvg": 0.9705882352941176,
+        "classReadingAvg": 0.5178571428571428,
+        "numListeningContrib": 2,
+        "numReadingContrib": 2
+      },
+      {
+        "round": "2회",
+        "roundNum": 2,
+        "classListeningAvg": 0.9732620320855614,
+        "classReadingAvg": 0.7077922077922078,
+        "numListeningContrib": 11,
+        "numReadingContrib": 11
+      },
+      {
+        "round": "3회",
+        "roundNum": 3,
+        "classListeningAvg": 0.9572192513368983,
+        "classReadingAvg": 0.75,
+        "numListeningContrib": 11,
+        "numReadingContrib": 12
+      },
+      {
+        "round": "4회",
+        "roundNum": 4,
+        "classListeningAvg": 0.9803921568627452,
+        "classReadingAvg": 0.7410714285714285,
+        "numListeningContrib": 12,
+        "numReadingContrib": 12
+      },
+      {
+        "round": "5회",
+        "roundNum": 5,
+        "classListeningAvg": 1.0,
+        "classReadingAvg": 0.7564935064935064,
+        "numListeningContrib": 11,
+        "numReadingContrib": 11
+      },
+      {
+        "round": "6회",
+        "roundNum": 6,
+        "classListeningAvg": 0.8872549019607843,
+        "classReadingAvg": 0.7580467372134039,
+        "numListeningContrib": 12,
+        "numReadingContrib": 12
+      },
+      {
+        "round": "7회",
+        "roundNum": 7,
+        "classListeningAvg": 0.9950980392156863,
+        "classReadingAvg": 0.7857142857142857,
+        "numListeningContrib": 12,
+        "numReadingContrib": 12
+      },
+      {
+        "round": "8회",
+        "roundNum": 8,
+        "classListeningAvg": 0.9679144385026738,
+        "classReadingAvg": 0.7678571428571428,
+        "numListeningContrib": 11,
+        "numReadingContrib": 12
+      },
+      {
+        "round": "9회",
+        "roundNum": 9,
+        "classListeningAvg": 0.9823529411764707,
+        "classReadingAvg": 0.7954545454545454,
+        "numListeningContrib": 10,
+        "numReadingContrib": 11
+      },
+      {
+        "round": "10회",
+        "roundNum": 10,
+        "classListeningAvg": 0.979779411764706,
+        "classReadingAvg": 0.8125,
+        "numListeningContrib": 12,
+        "numReadingContrib": 12
+      }
+    ]
+  },
+  "legacyGo2Baseline": {
+    "mt2ClassReadingAvg": 0.4791666666666667
+  },
+  "typeTrend": {
+    "types": [
+      "내용 일치",
+      "대의 추론",
+      "문장 삽입",
+      "빈칸 추론",
+      "순서 추론",
+      "심경 추론",
+      "어법",
+      "요약",
+      "장문 독해",
+      "함의 추론",
+      "흐름 무관"
+    ],
+    "sessions": [
+      {
+        "session": 1,
+        "label": "1회차",
+        "byType": {
+          "대의 추론": {
+            "correct": 77,
+            "total": 88,
+            "accuracy": 0.875
+          },
+          "심경 추론": {
+            "correct": 10,
+            "total": 11,
+            "accuracy": 0.9091
+          },
+          "함의 추론": {
+            "correct": 9,
+            "total": 11,
+            "accuracy": 0.8182
+          },
+          "내용 일치": {
+            "correct": 53,
+            "total": 55,
+            "accuracy": 0.9636
+          },
+          "어법": {
+            "correct": 27,
+            "total": 44,
+            "accuracy": 0.6136
+          },
+          "빈칸 추론": {
+            "correct": 31,
+            "total": 66,
+            "accuracy": 0.4697
+          },
+          "흐름 무관": {
+            "correct": 16,
+            "total": 22,
+            "accuracy": 0.7273
+          },
+          "순서 추론": {
+            "correct": 23,
+            "total": 33,
+            "accuracy": 0.697
+          },
+          "문장 삽입": {
+            "correct": 9,
+            "total": 22,
+            "accuracy": 0.4091
+          },
+          "요약": {
+            "correct": 8,
+            "total": 11,
+            "accuracy": 0.7273
+          },
+          "장문 독해": {
+            "correct": 55,
+            "total": 77,
+            "accuracy": 0.7143
+          }
+        }
+      },
+      {
+        "session": 2,
+        "label": "2회차",
+        "byType": {
+          "대의 추론": {
+            "correct": 70,
+            "total": 77,
+            "accuracy": 0.9091
+          },
+          "심경 추론": {
+            "correct": 22,
+            "total": 22,
+            "accuracy": 1.0
+          },
+          "함의 추론": {
+            "correct": 8,
+            "total": 11,
+            "accuracy": 0.7273
+          },
+          "내용 일치": {
+            "correct": 55,
+            "total": 55,
+            "accuracy": 1.0
+          },
+          "어법": {
+            "correct": 31,
+            "total": 44,
+            "accuracy": 0.7045
+          },
+          "빈칸 추론": {
+            "correct": 32,
+            "total": 55,
+            "accuracy": 0.5818
+          },
+          "흐름 무관": {
+            "correct": 10,
+            "total": 11,
+            "accuracy": 0.9091
+          },
+          "순서 추론": {
+            "correct": 14,
+            "total": 22,
+            "accuracy": 0.6364
+          },
+          "문장 삽입": {
+            "correct": 23,
+            "total": 33,
+            "accuracy": 0.697
+          },
+          "요약": {
+            "correct": 15,
+            "total": 22,
+            "accuracy": 0.6818
+          },
+          "장문 독해": {
+            "correct": 62,
+            "total": 88,
+            "accuracy": 0.7045
+          }
+        }
+      },
+      {
+        "session": 3,
+        "label": "3회차",
+        "byType": {
+          "대의 추론": {
+            "correct": 74,
+            "total": 86,
+            "accuracy": 0.8605
+          },
+          "심경 추론": {
+            "correct": 22,
+            "total": 22,
+            "accuracy": 1.0
+          },
+          "함의 추론": {
+            "correct": 8,
+            "total": 11,
+            "accuracy": 0.7273
+          },
+          "내용 일치": {
+            "correct": 42,
+            "total": 44,
+            "accuracy": 0.9545
+          },
+          "어법": {
+            "correct": 25,
+            "total": 33,
+            "accuracy": 0.7576
+          },
+          "빈칸 추론": {
+            "correct": 44,
+            "total": 66,
+            "accuracy": 0.6667
+          },
+          "흐름 무관": {
+            "correct": 18,
+            "total": 22,
+            "accuracy": 0.8182
+          },
+          "순서 추론": {
+            "correct": 16,
+            "total": 22,
+            "accuracy": 0.7273
+          },
+          "문장 삽입": {
+            "correct": 16,
+            "total": 33,
+            "accuracy": 0.4848
+          },
+          "요약": {
+            "correct": 7,
+            "total": 11,
+            "accuracy": 0.6364
+          },
+          "장문 독해": {
+            "correct": 76,
+            "total": 88,
+            "accuracy": 0.8636
+          }
+        }
+      },
+      {
+        "session": 4,
+        "label": "4회차",
+        "byType": {
+          "대의 추론": {
+            "correct": 63,
+            "total": 85,
+            "accuracy": 0.7412
+          },
+          "심경 추론": {
+            "correct": 11,
+            "total": 11,
+            "accuracy": 1.0
+          },
+          "함의 추론": {
+            "correct": 15,
+            "total": 21,
+            "accuracy": 0.7143
+          },
+          "내용 일치": {
+            "correct": 41,
+            "total": 44,
+            "accuracy": 0.9318
+          },
+          "어법": {
+            "correct": 25,
+            "total": 42,
+            "accuracy": 0.5952
+          },
+          "빈칸 추론": {
+            "correct": 34,
+            "total": 64,
+            "accuracy": 0.5312
+          },
+          "흐름 무관": {
+            "correct": 9,
+            "total": 11,
+            "accuracy": 0.8182
+          },
+          "순서 추론": {
+            "correct": 23,
+            "total": 32,
+            "accuracy": 0.7188
+          },
+          "문장 삽입": {
+            "correct": 13,
+            "total": 22,
+            "accuracy": 0.5909
+          },
+          "요약": {
+            "correct": 18,
+            "total": 21,
+            "accuracy": 0.8571
+          },
+          "장문 독해": {
+            "correct": 61,
+            "total": 75,
+            "accuracy": 0.8133
+          }
+        }
+      },
+      {
+        "session": 5,
+        "label": "5회차",
+        "byType": {
+          "대의 추론": {
+            "correct": 71,
+            "total": 77,
+            "accuracy": 0.9221
+          },
+          "심경 추론": {
+            "correct": 11,
+            "total": 11,
+            "accuracy": 1.0
+          },
+          "함의 추론": {
+            "correct": 17,
+            "total": 22,
+            "accuracy": 0.7727
+          },
+          "내용 일치": {
+            "correct": 53,
+            "total": 55,
+            "accuracy": 0.9636
+          },
+          "어법": {
+            "correct": 29,
+            "total": 44,
+            "accuracy": 0.6591
+          },
+          "빈칸 추론": {
+            "correct": 25,
+            "total": 55,
+            "accuracy": 0.4545
+          },
+          "흐름 무관": {
+            "correct": 16,
+            "total": 22,
+            "accuracy": 0.7273
+          },
+          "순서 추론": {
+            "correct": 15,
+            "total": 22,
+            "accuracy": 0.6818
+          },
+          "문장 삽입": {
+            "correct": 23,
+            "total": 33,
+            "accuracy": 0.697
+          },
+          "요약": {
+            "correct": 7,
+            "total": 11,
+            "accuracy": 0.6364
+          },
+          "장문 독해": {
+            "correct": 72,
+            "total": 88,
+            "accuracy": 0.8182
+          }
+        }
+      },
+      {
+        "session": 6,
+        "label": "6회차",
+        "byType": {
+          "대의 추론": {
+            "correct": 71,
+            "total": 77,
+            "accuracy": 0.9221
+          },
+          "심경 추론": {
+            "correct": 11,
+            "total": 11,
+            "accuracy": 1.0
+          },
+          "함의 추론": {
+            "correct": 15,
+            "total": 22,
+            "accuracy": 0.6818
+          },
+          "내용 일치": {
+            "correct": 65,
+            "total": 66,
+            "accuracy": 0.9848
+          },
+          "어법": {
+            "correct": 26,
+            "total": 33,
+            "accuracy": 0.7879
+          },
+          "빈칸 추론": {
+            "correct": 39,
+            "total": 66,
+            "accuracy": 0.5909
+          },
+          "흐름 무관": {
+            "correct": 7,
+            "total": 11,
+            "accuracy": 0.6364
+          },
+          "순서 추론": {
+            "correct": 23,
+            "total": 33,
+            "accuracy": 0.697
+          },
+          "문장 삽입": {
+            "correct": 12,
+            "total": 22,
+            "accuracy": 0.5455
+          },
+          "요약": {
+            "correct": 13,
+            "total": 22,
+            "accuracy": 0.5909
+          },
+          "장문 독해": {
+            "correct": 69,
+            "total": 77,
+            "accuracy": 0.8961
+          }
+        }
+      },
+      {
+        "session": 7,
+        "label": "7회차",
+        "byType": {
+          "대의 추론": {
+            "correct": 80,
+            "total": 88,
+            "accuracy": 0.9091
+          },
+          "심경 추론": {
+            "correct": 11,
+            "total": 11,
+            "accuracy": 1.0
+          },
+          "함의 추론": {
+            "correct": 9,
+            "total": 11,
+            "accuracy": 0.8182
+          },
+          "내용 일치": {
+            "correct": 55,
+            "total": 55,
+            "accuracy": 1.0
+          },
+          "어법": {
+            "correct": 24,
+            "total": 33,
+            "accuracy": 0.7273
+          },
+          "빈칸 추론": {
+            "correct": 38,
+            "total": 55,
+            "accuracy": 0.6909
+          },
+          "흐름 무관": {
+            "correct": 20,
+            "total": 22,
+            "accuracy": 0.9091
+          },
+          "순서 추론": {
+            "correct": 19,
+            "total": 33,
+            "accuracy": 0.5758
+          },
+          "문장 삽입": {
+            "correct": 20,
+            "total": 33,
+            "accuracy": 0.6061
+          },
+          "요약": {
+            "correct": 6,
+            "total": 11,
+            "accuracy": 0.5455
+          },
+          "장문 독해": {
+            "correct": 73,
+            "total": 88,
+            "accuracy": 0.8295
+          }
+        }
+      },
+      {
+        "session": 8,
+        "label": "8회차",
+        "byType": {
+          "대의 추론": {
+            "correct": 81,
+            "total": 88,
+            "accuracy": 0.9205
+          },
+          "심경 추론": {
+            "correct": 22,
+            "total": 22,
+            "accuracy": 1.0
+          },
+          "함의 추론": {
+            "correct": 21,
+            "total": 22,
+            "accuracy": 0.9545
+          },
+          "내용 일치": {
+            "correct": 55,
+            "total": 55,
+            "accuracy": 1.0
+          },
+          "어법": {
+            "correct": 24,
+            "total": 33,
+            "accuracy": 0.7273
+          },
+          "빈칸 추론": {
+            "correct": 38,
+            "total": 66,
+            "accuracy": 0.5758
+          },
+          "흐름 무관": {
+            "correct": 11,
+            "total": 11,
+            "accuracy": 1.0
+          },
+          "순서 추론": {
+            "correct": 21,
+            "total": 22,
+            "accuracy": 0.9545
+          },
+          "문장 삽입": {
+            "correct": 26,
+            "total": 33,
+            "accuracy": 0.7879
+          },
+          "요약": {
+            "correct": 9,
+            "total": 11,
+            "accuracy": 0.8182
+          },
+          "장문 독해": {
+            "correct": 63,
+            "total": 77,
+            "accuracy": 0.8182
+          }
+        }
+      },
+      {
+        "session": 9,
+        "label": "9회차",
+        "byType": {
+          "대의 추론": {
+            "correct": 82,
+            "total": 88,
+            "accuracy": 0.9318
+          },
+          "심경 추론": {
+            "correct": 21,
+            "total": 22,
+            "accuracy": 0.9545
+          },
+          "함의 추론": {
+            "correct": 18,
+            "total": 22,
+            "accuracy": 0.8182
+          },
+          "내용 일치": {
+            "correct": 55,
+            "total": 55,
+            "accuracy": 1.0
+          },
+          "어법": {
+            "correct": 25,
+            "total": 33,
+            "accuracy": 0.7576
+          },
+          "빈칸 추론": {
+            "correct": 36,
+            "total": 55,
+            "accuracy": 0.6545
+          },
+          "흐름 무관": {
+            "correct": 18,
+            "total": 22,
+            "accuracy": 0.8182
+          },
+          "순서 추론": {
+            "correct": 19,
+            "total": 22,
+            "accuracy": 0.8636
+          },
+          "문장 삽입": {
+            "correct": 17,
+            "total": 22,
+            "accuracy": 0.7727
+          },
+          "요약": {
+            "correct": 8,
+            "total": 11,
+            "accuracy": 0.7273
+          },
+          "장문 독해": {
+            "correct": 76,
+            "total": 88,
+            "accuracy": 0.8636
+          }
+        }
+      },
+      {
+        "session": 10,
+        "label": "10회차",
+        "byType": {
+          "대의 추론": {
+            "correct": 80,
+            "total": 88,
+            "accuracy": 0.9091
+          },
+          "심경 추론": {
+            "correct": 11,
+            "total": 11,
+            "accuracy": 1.0
+          },
+          "함의 추론": {
+            "correct": 19,
+            "total": 22,
+            "accuracy": 0.8636
+          },
+          "내용 일치": {
+            "correct": 44,
+            "total": 44,
+            "accuracy": 1.0
+          },
+          "어법": {
+            "correct": 27,
+            "total": 44,
+            "accuracy": 0.6136
+          },
+          "빈칸 추론": {
+            "correct": 45,
+            "total": 66,
+            "accuracy": 0.6818
+          },
+          "흐름 무관": {
+            "correct": 11,
+            "total": 11,
+            "accuracy": 1.0
+          },
+          "순서 추론": {
+            "correct": 19,
+            "total": 33,
+            "accuracy": 0.5758
+          },
+          "문장 삽입": {
+            "correct": 6,
+            "total": 22,
+            "accuracy": 0.2727
+          },
+          "요약": {
+            "correct": 13,
+            "total": 22,
+            "accuracy": 0.5909
+          },
+          "장문 독해": {
+            "correct": 64,
+            "total": 77,
+            "accuracy": 0.8312
+          }
+        }
+      },
+      {
+        "session": 11,
+        "label": "메인 시험",
+        "isMain": true,
+        "byType": {
+          "대의 추론": {
+            "correct": 53,
+            "total": 55,
+            "accuracy": 0.9636
+          },
+          "심경 추론": {
+            "correct": 11,
+            "total": 11,
+            "accuracy": 1.0
+          },
+          "함의 추론": {
+            "correct": 4,
+            "total": 11,
+            "accuracy": 0.3636
+          },
+          "내용 일치": {
+            "correct": 43,
+            "total": 44,
+            "accuracy": 0.9773
+          },
+          "어법": {
+            "correct": 4,
+            "total": 22,
+            "accuracy": 0.1818
+          },
+          "빈칸 추론": {
+            "correct": 16,
+            "total": 44,
+            "accuracy": 0.3636
+          },
+          "흐름 무관": {
+            "correct": 8,
+            "total": 11,
+            "accuracy": 0.7273
+          },
+          "순서 추론": {
+            "correct": 10,
+            "total": 22,
+            "accuracy": 0.4545
+          },
+          "문장 삽입": {
+            "correct": 6,
+            "total": 22,
+            "accuracy": 0.2727
+          },
+          "요약": {
+            "correct": 4,
+            "total": 11,
+            "accuracy": 0.3636
+          },
+          "장문 독해": {
+            "correct": 46,
+            "total": 55,
+            "accuracy": 0.8364
+          }
+        }
+      }
+    ],
+    "cumulative": {
+      "대의 추론": {
+        "correct": 802,
+        "total": 897,
+        "accuracy": 0.8941
+      },
+      "심경 추론": {
+        "correct": 163,
+        "total": 165,
+        "accuracy": 0.9879
+      },
+      "함의 추론": {
+        "correct": 143,
+        "total": 186,
+        "accuracy": 0.7688
+      },
+      "내용 일치": {
+        "correct": 561,
+        "total": 572,
+        "accuracy": 0.9808
+      },
+      "어법": {
+        "correct": 267,
+        "total": 405,
+        "accuracy": 0.6593
+      },
+      "빈칸 추론": {
+        "correct": 378,
+        "total": 658,
+        "accuracy": 0.5745
+      },
+      "흐름 무관": {
+        "correct": 144,
+        "total": 176,
+        "accuracy": 0.8182
+      },
+      "순서 추론": {
+        "correct": 202,
+        "total": 296,
+        "accuracy": 0.6824
+      },
+      "문장 삽입": {
+        "correct": 171,
+        "total": 297,
+        "accuracy": 0.5758
+      },
+      "요약": {
+        "correct": 108,
+        "total": 164,
+        "accuracy": 0.6585
+      },
+      "장문 독해": {
+        "correct": 717,
+        "total": 878,
+        "accuracy": 0.8166
+      }
+    }
+  }
 }
