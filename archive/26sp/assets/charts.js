@@ -5,19 +5,17 @@
  * ------------------------------------------------------------ */
 
 const CHART_COLORS = {
-  magenta: '#5b7699',
-  magentaBright: '#7185a7',
-  magentaSoft: 'rgba(91, 118, 153, 0.20)',
-  magentaFaint: 'rgba(91, 118, 153, 0.09)',
-  ink: '#22231f',
-  inkMute: '#686861',
-  inkFaint: '#8f8e87',
-  hairline: '#cbc7bd',
-  divider: 'rgba(34, 35, 31, 0.09)',
-  purple: '#7185a7',
-  amber: '#d39a74',
-  green: '#4f8f68',
-  legacyBase: '#b7c3cf',
+  magenta: '#b91170',
+  magentaBright: '#d11782',
+  magentaSoft: 'rgba(185, 17, 112, 0.18)',
+  magentaFaint: 'rgba(185, 17, 112, 0.08)',
+  ink: '#1d1d1f',
+  inkMute: '#4f5562',
+  inkFaint: '#707783',
+  hairline: '#e0e0e0',
+  divider: 'rgba(0, 0, 0, 0.06)',
+  purple: '#7b2da4',
+  amber: '#c87a00',
 };
 
 function svgEl(tag, attrs, children) {
@@ -71,78 +69,28 @@ function renderBarChart(container, data, options = {}) {
     const x = padLeft + i * (barW + gap) + gap / 2;
     const h = (d.value / max) * chartH;
     const y = padTop + chartH - h;
-    const hasLegacy = d.legacyValue !== undefined && d.legacyValue !== null;
-    let topLabelY = y - 8;
-
-    if (hasLegacy) {
-      const grew = d.value >= d.legacyValue;
-      const dirColor = grew ? CHART_COLORS.green : CHART_COLORS.magenta;
-      const legacyH = (d.legacyValue / max) * chartH;
-      const legacyY = padTop + chartH - legacyH;
-      topLabelY = (grew ? y : legacyY) - 8;
-
-      // Two-tone fill so the change is visible on the bar itself, not just
-      // in the caption text: the segment up to last term's score stays a
-      // neutral tone, the segment above/below it (this term's move) is
-      // colored by direction. No extra floating labels on the bar - those
-      // are what caused the earlier overlap mess; the exact numbers live in
-      // the plain-text line under the chart instead.
-      if (grew) {
-        bars += svgEl('rect', {
-          x: x.toFixed(1), y: legacyY.toFixed(1), width: barW.toFixed(1), height: legacyH.toFixed(1),
-          rx: 3, fill: CHART_COLORS.legacyBase,
-        });
-        const growH = Math.max(h - legacyH, 0);
-        bars += svgEl('rect', {
-          x: x.toFixed(1), y: y.toFixed(1), width: barW.toFixed(1), height: growH.toFixed(1),
-          rx: 3, fill: dirColor,
-        });
-      } else {
-        bars += svgEl('rect', {
-          x: x.toFixed(1), y: y.toFixed(1), width: barW.toFixed(1), height: h.toFixed(1),
-          rx: 3, fill: dirColor,
-        });
-        const ghostH = Math.max(legacyH - h, 0);
-        bars += svgEl('rect', {
-          x: x.toFixed(1), y: legacyY.toFixed(1), width: barW.toFixed(1), height: ghostH.toFixed(1),
-          rx: 3, fill: 'none', stroke: dirColor, 'stroke-width': 1.5, 'stroke-dasharray': '3 3',
-        });
-      }
-
-      if (showValueLabels) {
-        bars += svgEl('text', {
-          x: (x + barW / 2).toFixed(1), y: topLabelY.toFixed(1),
-          'text-anchor': 'middle',
-          'font-size': 13, 'font-weight': 700,
-          fill: dirColor,
-          'font-family': "var(--font-body)",
-        }, `${d.value}${valueSuffix}`);
-      }
-    } else {
-      const fill = d.highlight ? CHART_COLORS.magenta : CHART_COLORS.magentaSoft;
-      const stroke = d.highlight ? CHART_COLORS.magenta : 'transparent';
-      bars += svgEl('rect', {
-        x: x.toFixed(1), y: y.toFixed(1), width: barW.toFixed(1), height: h.toFixed(1),
-        rx: 3, fill, stroke, 'stroke-width': 1,
-      });
-      if (showValueLabels) {
-        bars += svgEl('text', {
-          x: (x + barW / 2).toFixed(1), y: topLabelY.toFixed(1),
-          'text-anchor': 'middle',
-          'font-size': 13, 'font-weight': d.highlight ? 600 : 400,
-          fill: d.highlight ? CHART_COLORS.magenta : CHART_COLORS.inkMute,
-          'font-family': "var(--font-body)",
-        }, `${d.value}${valueSuffix}`);
-      }
+    const fill = d.highlight ? CHART_COLORS.magenta : CHART_COLORS.magentaSoft;
+    const stroke = d.highlight ? CHART_COLORS.magenta : 'transparent';
+    bars += svgEl('rect', {
+      x: x.toFixed(1), y: y.toFixed(1), width: barW.toFixed(1), height: h.toFixed(1),
+      rx: 3, fill, stroke, 'stroke-width': 1,
+    });
+    if (showValueLabels) {
+      bars += svgEl('text', {
+        x: (x + barW / 2).toFixed(1), y: (y - 8).toFixed(1),
+        'text-anchor': 'middle',
+        'font-size': 13, 'font-weight': d.highlight ? 600 : 400,
+        fill: d.highlight ? CHART_COLORS.magenta : CHART_COLORS.inkMute,
+        'font-family': "var(--font-body)",
+      }, `${d.value}${valueSuffix}`);
     }
-
     // X-label
     bars += svgEl('text', {
       x: (x + barW / 2).toFixed(1), y: padTop + chartH + 22,
       'text-anchor': 'middle',
       'font-size': 13,
-      fill: (d.highlight || hasLegacy) ? CHART_COLORS.magenta : CHART_COLORS.inkFaint,
-      'font-weight': (d.highlight || hasLegacy) ? 600 : 400,
+      fill: d.highlight ? CHART_COLORS.magenta : CHART_COLORS.inkFaint,
+      'font-weight': d.highlight ? 600 : 400,
       'font-family': "var(--font-body)",
     }, d.label);
   });
@@ -205,7 +153,7 @@ function renderGrade1TrendChart(container, data, options = {}) {
   if (!container) return;
 
   const width = 1000;
-  const padTop = 58, padBottom = 66, padLeft = 54, padRight = 58;
+  const padTop = 28, padBottom = 66, padLeft = 54, padRight = 58;
   const chartH = height - padTop - padBottom;
   const chartW = width - padLeft - padRight;
   const groupW = chartW / data.length;
@@ -225,11 +173,11 @@ function renderGrade1TrendChart(container, data, options = {}) {
     const y = yToPx(v);
     grid += svgEl('line', {
       x1: padLeft, x2: padLeft + chartW, y1: y.toFixed(1), y2: y.toFixed(1),
-      stroke: 'rgba(34,35,31,0.10)', 'stroke-width': 1,
+      stroke: 'rgba(255,255,255,0.10)', 'stroke-width': 1,
     });
     grid += svgEl('text', {
       x: padLeft - 12, y: (y + 4).toFixed(1), 'text-anchor': 'end',
-      'font-size': 12, fill: '#7f7e77',
+      'font-size': 12, fill: 'rgba(255,255,255,0.62)',
       'font-family': "var(--font-body)",
     }, v);
   }
@@ -237,60 +185,49 @@ function renderGrade1TrendChart(container, data, options = {}) {
   const refY = yToPx(refLine);
   let referenceLine = svgEl('line', {
     x1: padLeft, x2: padLeft + chartW, y1: refY.toFixed(1), y2: refY.toFixed(1),
-    stroke: 'rgba(34,35,31,0.42)', 'stroke-width': 1.4,
+    stroke: 'rgba(255,255,255,0.35)', 'stroke-width': 1,
     'stroke-dasharray': '5 5',
   });
   let referenceLabel = '';
   referenceLabel += svgEl('text', {
-    x: 12, y: padTop - 8,
-    'font-size': 12, fill: '#7f7e77',
+    x: (padLeft + chartW - 4).toFixed(1), y: (refY - 7).toFixed(1),
+    'text-anchor': 'end', 'font-size': 12, fill: 'rgba(255,255,255,0.78)',
+    'font-weight': 600, 'font-family': "var(--font-body)",
+  }, '이론값 4%');
+  referenceLabel += svgEl('text', {
+    x: 12, y: 15,
+    'font-size': 12, fill: 'rgba(255,255,255,0.62)',
     'font-family': "var(--font-body)",
   }, '1등급 비율 (%)');
-
-  let legend = '';
-  const legendY = 20;
-  legend += svgEl('line', {
-    x1: padLeft, x2: padLeft + 26, y1: legendY, y2: legendY,
-    stroke: '#8fa1bd', 'stroke-width': 2,
-    'stroke-dasharray': '6 4',
-  });
-  legend += svgEl('text', {
-    x: padLeft + 34, y: legendY + 4,
-    'font-size': 13, fill: '#60779d', 'font-weight': 800,
-    'font-family': "var(--font-body)",
-  }, average !== null && average !== undefined ? `역대 평균 ${average.toFixed(2)}%` : '역대 평균');
-  legend += svgEl('line', {
-    x1: padLeft + 190, x2: padLeft + 216, y1: legendY, y2: legendY,
-    stroke: 'rgba(34,35,31,0.42)', 'stroke-width': 1.6,
-    'stroke-dasharray': '5 5',
-  });
-  legend += svgEl('text', {
-    x: padLeft + 224, y: legendY + 4,
-    'font-size': 13, fill: '#62625c', 'font-weight': 800,
-    'font-family': "var(--font-body)",
-  }, `이론상 1등급컷(${refLine}%)`);
 
   let averageLine = '';
   let averageLabel = '';
   if (average !== null && average !== undefined) {
     const avgY = yToPx(average);
+    const avgLabel = `역대 1등급 평균 ${average.toFixed(2)}%*`;
+    const avgLabelX = padLeft + chartW - 4;
+    const avgLabelY = avgY - 7;
     averageLine += svgEl('line', {
       x1: padLeft, x2: padLeft + chartW, y1: avgY.toFixed(1), y2: avgY.toFixed(1),
-      stroke: '#8fa1bd', 'stroke-width': 1.8,
+      stroke: '#38bdf8', 'stroke-width': 1.2,
       'stroke-dasharray': '6 4',
     });
+    averageLabel += svgEl('text', {
+      x: avgLabelX.toFixed(1), y: avgLabelY.toFixed(1),
+      'text-anchor': 'end', 'font-size': 12, fill: '#7dd3fc',
+      'font-weight': 700, 'font-family': "var(--font-body)",
+    }, avgLabel);
   }
 
   let bars = '';
   data.forEach((d, i) => {
-    const isHighlight = d.highlight || i === data.length - 1;
     const value = d.pct || 0;
     const x = padLeft + i * groupW + (groupW - barW) / 2;
     const h = Math.max(d.pct ? (value / yMax) * chartH : 3, 3);
     const y = d.pct ? yToPx(value) : padTop + chartH - h;
-    const fill = isHighlight ? '#5b7699' : (d.pct ? '#9aa3af' : 'transparent');
-    const stroke = isHighlight ? '#5b7699' : (d.pct ? 'transparent' : '#8f8e87');
-    const labelFill = isHighlight ? '#3e5266' : '#74746d';
+    const fill = d.highlight ? '#f97316' : (d.pct ? '#475569' : 'transparent');
+    const stroke = d.highlight ? '#fb923c' : (d.pct ? 'transparent' : 'rgba(255,255,255,0.38)');
+    const labelFill = d.highlight ? '#fdba74' : 'rgba(255,255,255,0.62)';
 
     bars += svgEl('rect', {
       x: x.toFixed(1), y: y.toFixed(1), width: barW.toFixed(1), height: h.toFixed(1),
@@ -298,12 +235,12 @@ function renderGrade1TrendChart(container, data, options = {}) {
       'data-tooltip': fmtTooltip(d),
       tabindex: 0,
     });
-    if (isHighlight || d.pct === null) {
+    if (d.highlight || d.pct === null) {
       bars += svgEl('text', {
-        x: (x + barW / 2).toFixed(1), y: (y - 10).toFixed(1),
+        x: (x + barW / 2).toFixed(1), y: (y - 8).toFixed(1),
         'text-anchor': 'middle',
-        'font-size': isHighlight ? 15 : 12, 'font-weight': 800,
-        fill: isHighlight ? '#3e5266' : '#8f8e87',
+        'font-size': 12, 'font-weight': 700,
+        fill: d.highlight ? '#fdba74' : 'rgba(255,255,255,0.54)',
         'font-family': "var(--font-body)",
       }, d.pct === null ? '0' : d.pct.toFixed(2) + '%');
     }
@@ -312,15 +249,15 @@ function renderGrade1TrendChart(container, data, options = {}) {
       'text-anchor': 'end',
       transform: `rotate(-35 ${(x + barW / 2).toFixed(1)} ${padTop + chartH + 24})`,
       'font-size': 10.5,
-      fill: labelFill,
-      'font-weight': isHighlight ? 700 : 500,
+      fill: d.highlight ? '#fdba74' : labelFill,
+      'font-weight': d.highlight ? 600 : 400,
       'font-family': "var(--font-body)",
     }, d.session);
     if (d.note) {
       bars += svgEl('text', {
         x: (x + barW / 2).toFixed(1), y: (padTop + chartH - 9).toFixed(1),
         'text-anchor': 'middle',
-        'font-size': 12, fill: '#8f8e87',
+        'font-size': 12, fill: 'rgba(255,255,255,0.54)',
         'font-family': "var(--font-body)",
       }, '*');
     }
@@ -332,89 +269,36 @@ function renderGrade1TrendChart(container, data, options = {}) {
     style: 'width:100%; height:auto; display:block;',
     role: 'img',
     'aria-label': '1등급 비율 추이 2016년부터 2026년까지',
-  }, grid + bars + referenceLine + averageLine + referenceLabel + legend + averageLabel);
+  }, grid + bars + referenceLine + averageLine + referenceLabel + averageLabel);
 
   container.innerHTML = svg;
-  bindChartTooltip(container);
-}
 
-/* Tooltip wiring, shared by any chart that renders [data-tooltip] elements.
- * Uses event delegation bound ONCE per container (guarded), so it survives
- * the container's innerHTML being replaced on re-render (e.g. on window
- * resize) - previously, listeners were attached directly to the bars, so a
- * re-render could destroy the hovered bar without ever firing its
- * mouseleave, leaving a stale tooltip stuck on screen forever. */
-function getChartTooltip() {
   let tooltip = document.querySelector('.exam-chart-tooltip');
   if (!tooltip) {
     tooltip = document.createElement('div');
     tooltip.className = 'exam-chart-tooltip';
     document.body.appendChild(tooltip);
   }
-  return tooltip;
-}
-
-function hideChartTooltip() {
-  getChartTooltip().classList.remove('show');
-  window.__chartTooltipLastEl = null;
-}
-
-function showChartTooltip(el, x, y) {
-  const tooltip = getChartTooltip();
-  tooltip.textContent = el.getAttribute('data-tooltip');
-  tooltip.style.left = `${x}px`;
-  tooltip.style.top = `${y}px`;
-  tooltip.classList.add('show');
-  window.__chartTooltipLastEl = el;
-}
-
-function bindChartTooltip(container) {
-  getChartTooltip().classList.remove('show');
-  if (container.__tooltipBound) return;
-  container.__tooltipBound = true;
-
-  container.addEventListener('mousemove', e => {
-    const el = e.target.closest('[data-tooltip]');
-    if (!el) { hideChartTooltip(); return; }
-    showChartTooltip(el, e.clientX, e.clientY - 12);
+  const moveTooltip = e => {
+    const target = e.currentTarget;
+    tooltip.textContent = target.getAttribute('data-tooltip');
+    tooltip.style.left = `${e.clientX}px`;
+    tooltip.style.top = `${e.clientY - 12}px`;
+    tooltip.classList.add('show');
+  };
+  container.querySelectorAll('[data-tooltip]').forEach(el => {
+    el.addEventListener('mousemove', moveTooltip);
+    el.addEventListener('mouseenter', moveTooltip);
+    el.addEventListener('focus', e => {
+      const rect = e.currentTarget.getBoundingClientRect();
+      tooltip.textContent = e.currentTarget.getAttribute('data-tooltip');
+      tooltip.style.left = `${rect.left + rect.width / 2}px`;
+      tooltip.style.top = `${rect.top - 8}px`;
+      tooltip.classList.add('show');
+    });
+    el.addEventListener('mouseleave', () => tooltip.classList.remove('show'));
+    el.addEventListener('blur', () => tooltip.classList.remove('show'));
   });
-  container.addEventListener('focusin', e => {
-    const el = e.target.closest('[data-tooltip]');
-    if (!el) return;
-    const rect = el.getBoundingClientRect();
-    showChartTooltip(el, rect.left + rect.width / 2, rect.top - 8);
-  });
-  container.addEventListener('focusout', hideChartTooltip);
-
-  // The tooltip's visibility is NOT driven by leave/blur events - those
-  // depend on the browser reliably firing mouseleave/pointerleave/blur when
-  // the cursor exits, and in practice (confirmed via screen recording, on a
-  // trackpad, in Chrome via Live Server) that firing is not reliable enough:
-  // the cursor could be all the way up at the OS menu bar, far outside the
-  // page, with a stale tooltip still frozen on screen. Instead, a single
-  // global poll independently re-checks reality every 150ms using
-  // elementFromPoint at the last known cursor position, and self-corrects
-  // regardless of which (if any) leave event fired. This can only ever be
-  // wrong for up to 150ms, never stuck indefinitely.
-  if (!window.__chartTooltipGuard) {
-    window.__chartTooltipGuard = true;
-    let lastX = null;
-    let lastY = null;
-    document.addEventListener('mousemove', e => { lastX = e.clientX; lastY = e.clientY; }, true);
-    document.addEventListener('pointermove', e => { lastX = e.clientX; lastY = e.clientY; }, true);
-    document.addEventListener('scroll', hideChartTooltip, true);
-    document.addEventListener('mouseleave', hideChartTooltip);
-    document.addEventListener('visibilitychange', hideChartTooltip);
-    document.addEventListener('click', hideChartTooltip, true);
-    window.addEventListener('blur', hideChartTooltip);
-    setInterval(() => {
-      if (!window.__chartTooltipLastEl) return;
-      if (lastX === null || lastY === null) { hideChartTooltip(); return; }
-      const under = document.elementFromPoint(lastX, lastY);
-      const el = under && under.closest ? under.closest('[data-tooltip]') : null;
-      if (el !== window.__chartTooltipLastEl) hideChartTooltip();
-    }, 150);
-  }
 }
 
 /* ----------------------------------------------------------------
