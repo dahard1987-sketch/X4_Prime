@@ -340,15 +340,43 @@ function renderInsertSentenceBox(item) {
 function buildWrongCard(w, classStats) {
   const qStat = classStats.mainExam.questionStats[w.num] || {};
   const classAccPct = qStat.classAccuracy !== undefined ? (qStat.classAccuracy * 100).toFixed(0) : '—';
+  const answerDistribution = qStat.answerDistribution || {};
+  const classSize = classStats.numStudents || Object.values(answerDistribution).reduce((sum, count) => sum + count, 0);
+  const responseTotal = Object.values(answerDistribution).reduce((sum, count) => sum + count, 0);
+  const unanswered = Math.max(0, classSize - responseTotal);
+  const selectedCount = answerDistribution[String(w.answer)] || 0;
+  const correctCount = answerDistribution[String(w.correct)] || 0;
+  const pctOfClass = count => classSize ? Math.round((count / classSize) * 100) : 0;
   const item = findExamItem(w.num);
   const passage = item ? resolvePassage(item, w.section) : '';
-  const choicesHtml = item && !item.isImageQuestion ? item.choices.map((c, i) => {
+
+  // Image questions do not carry the actual option artwork in the text data,
+  // but the class response counts are still useful. Show five labelled rows so
+  // those questions get the same complete distribution as text questions.
+  const choices = item && !item.isImageQuestion
+    ? item.choices
+    : Array.from({ length: 5 }, (_, i) => `선택지 ${circleNum(i + 1)} (그림 자료)`);
+  const choicesHtml = item ? choices.map((c, i) => {
     const n = i + 1;
-    let cls = '';
-    if (n === w.correct) cls += ' is-correct';
-    if (n === w.answer) cls += ' is-mine';
-    return `<li class="${cls.trim()}"><span class="qc-num">${n}</span><span>${c}</span></li>`;
-  }).join('') : '<li style="color:var(--ink-faint);">그림 자료 문제입니다.</li>';
+    const count = answerDistribution[String(n)] || 0;
+    const pct = pctOfClass(count);
+    const isCorrect = n === w.correct;
+    const isMine = n === w.answer;
+    const cls = ['has-distribution', isCorrect ? 'is-correct' : '', isMine ? 'is-mine' : ''].filter(Boolean).join(' ');
+    const flags = [
+      isMine ? '<span class="qc-flag mine">나의 선택</span>' : '',
+      isCorrect ? '<span class="qc-flag correct">정답</span>' : '',
+    ].join('');
+    return `<li class="${cls}" style="--qc-pct:${pct}%" aria-label="${n}번 선택지, 반 ${count}명 ${pct}퍼센트${isMine ? ', 나의 선택' : ''}${isCorrect ? ', 정답' : ''}">
+      <span class="qc-num">${circleNum(n)}</span>
+      <span class="qc-choice-body"><span class="qc-text">${escapeHtml(c)}</span><span class="qc-flags">${flags}</span></span>
+      <span class="qc-count"><strong>${count}명</strong><small>${pct}%</small></span>
+    </li>`;
+  }).join('') : '<li style="color:var(--ink-faint);">선택지 정보가 없습니다.</li>';
+
+  const responseNote = unanswered > 0
+    ? `${responseTotal}명 응답 · 미응답 ${unanswered}명`
+    : `${responseTotal}명 응답`;
 
   return `
     <div class="q-card">
@@ -359,8 +387,32 @@ function buildWrongCard(w, classStats) {
           <span class="q-points">${w.points}점</span>
         </div>
       </div>
+      <div class="q-answer-compare" aria-label="나의 선택과 정답 비교">
+        <div class="q-answer-result mine">
+          <span class="qar-label">나의 선택</span>
+          <strong>${circleNum(w.answer)}</strong>
+          <span class="qar-detail">반 ${selectedCount}명 · ${pctOfClass(selectedCount)}%</span>
+        </div>
+        <span class="q-answer-arrow" aria-hidden="true">→</span>
+        <div class="q-answer-result correct">
+          <span class="qar-label">정답</span>
+          <strong>${circleNum(w.correct)}</strong>
+          <span class="qar-detail">반 ${correctCount}명 · ${pctOfClass(correctCount)}%</span>
+        </div>
+      </div>
       ${renderInsertSentenceBox(item)}
       <div class="q-passage${w.section === 'listening' ? ' q-script' : ''}">${escapeHtml(item ? item.stem : w.type)}\n\n${formatPassageHtml(passage, item)}</div>
+      <div class="q-choice-distribution-head">
+        <div>
+          <strong>반 선택 분포</strong>
+          <div class="q-choice-legend" aria-label="선택지 색상 안내">
+            <span><i class="correct"></i>정답</span>
+            <span><i class="mine"></i>나의 선택</span>
+            <span><i class="other"></i>그 외 선택</span>
+          </div>
+        </div>
+        <span class="q-response-total">${responseNote}</span>
+      </div>
       <ul class="q-choices">${choicesHtml}</ul>
     </div>`;
 }
